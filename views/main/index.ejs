@@ -15,8 +15,7 @@
 <div class="about">
     <h1>عن بيئة التعلم <i class="fas fa-question-circle"></i></h1>
     <div class="container">
-        <p class="lead">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،
-            حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
+        <p class="lead"><%= data.about%>
         </p>
     </div>
 </div>
@@ -24,8 +23,7 @@
 <div class="brief">
     <h1>السيرة الذاتية <i class="fas fa-graduation-cap"></i></h1>
     <div class="container">
-        <p class="lead">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،
-            حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
+        <p class="lead"><%= data.brief%>
         </p>
     </div>
 </div>
@@ -34,32 +32,32 @@
     <h1>اتصل بنا</h1>
     <div class="container">
         <div class="row">
-        <div class="form col-lg-8">
-            <form action="/contac-us" method="post">
-                <div class="mb-3">
-                    <label for="email" class="form-label">البريد الالكتروني</label>
-                    <input type="email" class="form-control" id="email" placeholder="name@example.com">
-                  </div>
-                  <div class="mb-3">
-                    <label for="name" class="form-label">الاسم</label>
-                    <input type="text" class="form-control" id="name">
-                  </div>
-                  <div class="mb-3">
-                    <label for="content" class="form-label">محتوى الرسالة</label>
-                    <textarea class="form-control" id="content" rows="3"></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-dark"> ارسل</button>
-            </form>
+            <div class="form col-lg-8">
+                <form action="/contac-us" method="post">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">البريد الالكتروني</label>
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">الاسم</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">محتوى الرسالة</label>
+                        <textarea class="form-control" id="content" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-dark"> ارسل</button>
+                </form>
+            </div>
+            <div class="info col-lg-3">
+                <ul class="list-group">
+                    <li class="list-group-item"><i class="fab fa-whatsapp"></i> 0112457792</li>
+                    <li class="list-group-item"><i class="fab fa-facebook-f"></i> www.facebook.com</li>
+                    <li class="list-group-item"><i class="fab fa-telegram-plane"></i> @Elearning</li>
+                    <li class="list-group-item"><i class="fas fa-envelope"></i> Elearning@Elearning.com</li>
+                </ul>
+            </div>
         </div>
-        <div class="info col-lg-3">
-            <ul class="list-group">
-                <li class="list-group-item"><i class="fab fa-whatsapp"></i> 0112457792</li>
-                <li class="list-group-item"><i class="fab fa-facebook-f"></i>  www.facebook.com</li>
-                <li class="list-group-item"><i class="fab fa-telegram-plane"></i> @Elearning</li>
-                <li class="list-group-item"><i class="fas fa-envelope"></i> Elearning@Elearning.com</li> 
-              </ul>
-        </div>
-    </div>
     </div>
 </div>
 <div class="break"></div>

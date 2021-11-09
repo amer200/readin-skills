@@ -1,0 +1,30 @@
+<%- include('../lay-outs/head') %>
+<%- include('../lay-outs/nav') %>
+<link rel="stylesheet" href="/css/read-app.css">
+<div class="my-modal" id="modal">
+    <div class="container">
+        <div class="row">
+            <div class="content col-lg-5">
+                <p class="lead">شرح للطالب على البرنامج</p>
+                <button class="btn btn-dark" id="modalBtn"> موافق </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page d-none" id="page"> 
+    <div class="container">
+        <div class="row">
+            <div class="app">
+                <div class="timer">عداد الزمن:</div>
+                <div class="prag">
+                    <p class="lead">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد
+                        النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد
+                        الحروف التى يولدها التطبيق.</p>
+                </div>
+                <button class="btn btn-dark"> انهاء القراءة</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/read-app.js"></script>
+<%- include('../lay-outs/footer') %>

@@ -1,0 +1,17 @@
+.my-modal {
+    height: 83vh;
+    text-align: center;
+}
+
+.my-modal .content {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    padding: 20px 0 15px;
+    border: 2px solid #245C13;
+    background-color: #eee;
+}
+.page{
+    height: 83Vh;
+    padding: 100px;
+}
