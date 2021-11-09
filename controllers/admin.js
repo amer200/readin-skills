@@ -20,12 +20,20 @@ exports.EditMainPage = (req, res, next) => {
         about: about,
         brief: brief
     });
-    mainpage.save()
-            .then( result => {
-                res.redirect('/admin/')
+    MainPage.findOne()
+            .then( page => {
+                if(!page){
+                    return mainpage.save().then(result => {res.redirect('/admin/')})
+                }else{
+                    page.about = about;
+                    page.brief = brief;
+                    page.save()
+                        .then( result => {
+                            res.redirect('/admin/')
+                        })
+                }
             })
-            .catch( err =>{
-                console.log(err)
+            .catch(err => {
+                console.log(err);
             })
 }
-//// edit it to make update and add new
