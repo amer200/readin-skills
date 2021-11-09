@@ -1,0 +1,33 @@
+header{
+    height: 500px;
+    background-image: url('/img/header.jpg');
+    background-size: cover;
+    padding-top: 150px;
+    text-align: center;
+}
+header .links{
+    margin-left: auto;
+    margin-right: auto;
+}
+header .links .btn-primary{
+    background-color: #125C13 !important;
+    border: none;
+}
+.about,
+.brief,
+.contact{
+    text-align: center;
+}
+.contact .form,
+.contact .info{
+    text-align: right;
+}
+.contact .info ul{
+    margin-top: 20%;
+}
+i{
+    color: #ECECEC;
+}
+.contact i{
+    color: #125C13;
+}

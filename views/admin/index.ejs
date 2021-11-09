@@ -1,0 +1,58 @@
+<%- include('../lay-outs/head') %>
+<link rel="stylesheet" href="/css/admin.css">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="text-align: center; background-color: #888 !important;">
+    <h3 style="color: #fff; margin-left: auto;
+    margin-right: auto;">admin area</h3>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="side-bar col-lg-3">
+            <ul class="list-group">
+                <button type="button" class="list-group-item" data-bs-toggle="modal" data-bs-target="#mainPage">تعديل الصفحة الرئيسية</button>
+              </ul>
+            </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="mainPage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">الصفحة الرئيسية</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/admin/edit-main-page" method="post">
+                <div class="about">
+                    <h3>عن بيئة التعلم</h3>
+                    <div class="mb-3">
+                        <label for="about" class="form-label">المحتوى</label>
+                        <% if(MainPageData !== null){%>
+                        <textarea class="form-control" id="about" name="brief" rows="6"><%= MainPageData.about %></textarea>
+                       <% }else{ %>
+                        <textarea class="form-control" id="about" name="brief" rows="6"></textarea>
+                       <%}%>
+                      </div>
+                </div>
+                <div class="brief">
+                    <h3>السيرة الذاتية</h3>
+                    <div class="mb-3">
+                        <label for="about" class="form-label">المحتوى</label>
+                        <% if(MainPageData !== null){%>
+                            <textarea class="form-control" id="about" name="about" rows="6"><%= MainPageData.brief %></textarea>
+                           <% }else{ %>
+                            <textarea class="form-control" id="about" name="about" rows="6"></textarea>
+                           <%}%>
+                      </div>
+                </div>
+                <button type="submit" class="btn btn-dark"> حفظ التعديلات</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%- include('../lay-outs/footer') %>

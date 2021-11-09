@@ -1,0 +1,11 @@
+.side-bar{
+    padding: 20px;
+    height: 83vh;
+    border: 2px solid #ddd;
+    text-align: right;
+    background-color: #46a727;
+    border-radius: 20px;
+}
+.list-group{
+    margin-right: -45px;
+}

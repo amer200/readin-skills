@@ -1,0 +1,30 @@
+.break {
+    height: 50px;
+    border-bottom: solid #77D970;
+    margin: auto;
+    margin-bottom: 50px;
+    width: 90%;
+}
+
+.bg-dark,
+.bg-light {
+    background-color: #125C13 !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+}
+
+footer {
+    text-align: center;
+    color: #fff;
+}
+
+footer a {
+    text-decoration: none;
+    color: #fff;
+}
+
+footer a:hover {
+    color: #E6AF2E;
+}
