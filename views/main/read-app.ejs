@@ -5,7 +5,9 @@
     <div class="container">
         <div class="row">
             <div class="content col-lg-5">
-                <p class="lead">شرح للطالب على البرنامجهذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.</p>
+                <p class="lead">شرح للطالب على البرنامجهذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
+                    هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى
+                    زيادة عدد الحروف التى يولدها التطبيق.</p>
                 <button class="btn btn-dark" id="modalBtn"> موافق </button>
             </div>
         </div>
@@ -18,7 +20,9 @@
                 <p class="timer lead">عداد الزمن: <p class="lead timer" id="timer"></p>
                 </p>
                 <div class="prag">
-                    <p class="lead" id="prag">هذا النص هو مثال لنص يمكن أن <h1>عنوان</h1>
+                    <p class="lead" id="prag">
+                        <h3><%= p.title %></h3>
+                        <%- p.contentHtml %>
                     </p>
                 </div>
                 <button type="button" class="btn btn-dark" id="endApp" data-bs-toggle="modal"
@@ -39,23 +43,55 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form action="/test-result" method="post" id="testForm">
+                    <% p.quizs.forEach( q =>{ %>
+                    <% let answers = [q.rightanswer, q.wrongAnswerone, q.wrongAnswertwo] %>
                     <div class="qu">
                         <div class="form-check">
-                            <h5>السؤال الاول</h5>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <h5><%= q.quiz %></h5>
+                            <input class="form-check-input" type="radio" name="<%=q._id%>" id="flexRadioDefault1" value="
+                            <%= answers[Math.floor(Math.random() * 3)] %>
+                            ">
+                            <% let myVal = answers[Math.floor(Math.random() * 3)] %>
+                            <% let index = answers.indexOf(answers[Math.floor(Math.random() * 3)]); %>
+                            <%if (index > -1) { %>
+                            <%answers.splice(index, 1);%>
+                            <%}%>
                             <label class="form-check-label" for="flexRadioDefault1">
-                                Default radio
+                                <%= myVal %>
                             </label>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                                checked>
+                        <div class=" form-check">
+                            <input class="form-check-input" type="radio" name="<%=q._id%>" id="flexRadioDefault2" value="
+                            <%= answers[Math.floor(Math.random() * 2)] %>
+                            ">
+                            <% myVal = answers[Math.floor(Math.random() * 2)] %>
+                            <%  index = answers.indexOf(answers[Math.floor(Math.random() * 2)]); %>
+                            <%if (index > -1) { %>
+                            <%answers.splice(index, 1);%>
+                            <%}%>
                             <label class="form-check-label" for="flexRadioDefault2">
-                                Default checked radio
+                                <%= myVal %>
+                            </label>
+                        </div>
+                        <div class=" form-check">
+                            <input class="form-check-input" type="radio" name="<%=q._id%>" id="flexRadioDefault3"
+                                checked value="
+                                <%= answers[Math.floor(Math.random() * 1)] %>
+                                ">
+                            <% myVal = answers[Math.floor(Math.random() * 1)]%>
+                            <% index = answers.indexOf(answers[Math.floor(Math.random() * 1)]); %>
+                            <%if (index > -1) { %>
+                            <%answers.splice(index, 1);%>
+                            <%}%>
+                            <label class="form-check-label" for="flexRadioDefault3">
+                                <%= myVal %>
                             </label>
                         </div>
                     </div>
+                    <div class=" break">
+                    </div>
+                    <%})%>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">انهاء</button>

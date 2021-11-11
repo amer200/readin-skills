@@ -138,6 +138,10 @@ exports.postEditParagraph = (req, res, next) => {
     const title = req.body.title;
     const content = req.body.content;
     const wordcount = req.body.wordCount;
+    const quizs = req.body.quiz;
+    const rightAnswers = req.body.rightAnswer;
+    const wronganswerone = req.body.wrongAnswerone;
+    const wronganswertwo = req.body.wrongAnswertwo;
     Paragraph.findOne({
             _id: pId
         })
@@ -145,6 +149,27 @@ exports.postEditParagraph = (req, res, next) => {
             p.title = title;
             p.content = content;
             p.wordcount = wordcount;
+            if (typeof quizs == 'string') {
+                const quiz = {
+                    quiz: quizs,
+                    rightanswer: rightAnswers,
+                    wrongAnswerone: wronganswerone,
+                    wrongAnswertwo: wronganswertwo
+                };
+                p.quizs = quiz;
+            } else {
+                const quizlist = [];
+                for (let i = 0; i < quizs.length; i++) {
+                    const quiz = {
+                        quiz: quizs[i],
+                        rightanswer: rightAnswers[i],
+                        wrongAnswerone: wronganswerone[i],
+                        wrongAnswertwo: wronganswertwo[i]
+                    };
+                    quizlist.push(quiz)
+                }
+                p.quizs = quizlist;
+            }
             return p.save()
         })
         .then(result => {

@@ -53,7 +53,7 @@ document.getElementById('submitBtn').addEventListener('click', () => {
 
 const quizTemp = `                   
 <label for="about" class="form-label">السوؤال</label>
-<input type="text" class="form-control" name="quiz" placeholder="السوؤال">
+<input type="text" class="form-control" name="quiz" placeholder="السوؤال" required>
 <input type="text" class="form-control" name="rightAnswer" placeholder="الاجابة الصحيحة" required>
 <input type="text" class="form-control" name="wrongAnswerone" placeholder="اجابة خاطئة" required>
 <input type="text" class="form-control" name="wrongAnswertwo" placeholder="اجابة خاطئة" required>
@@ -68,4 +68,3 @@ addQuizBtn.addEventListener( 'click', () => {
     quizCon.innerHTML = quizTemp;
     root.appendChild(quizCon);
 })
-

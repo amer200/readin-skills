@@ -49,3 +49,22 @@ document.getElementById('submitBtn').addEventListener('click', () => {
     document.getElementsByName('wordCount')[0].value = document.getElementById('counter').innerHTML.split('')[0];
     document.getElementById('addForm').submit();
 })
+// add quiz section
+
+const quizTemp = `                   
+<label for="about" class="form-label">السوؤال</label>
+<input type="text" class="form-control" name="quiz" placeholder="السوؤال" required>
+<input type="text" class="form-control" name="rightAnswer" placeholder="الاجابة الصحيحة" required>
+<input type="text" class="form-control" name="wrongAnswerone" placeholder="اجابة خاطئة" required>
+<input type="text" class="form-control" name="wrongAnswertwo" placeholder="اجابة خاطئة" required>
+<div class="break"></div>`;
+
+const root = document.getElementById('quiz');
+const addQuizBtn = document.getElementById('addQuiz');
+
+addQuizBtn.addEventListener( 'click', () => {
+    const quizCon = document.createElement('div');
+    quizCon.classList = 'mb-3';
+    quizCon.innerHTML = quizTemp;
+    root.appendChild(quizCon);
+})

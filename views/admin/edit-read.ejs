@@ -18,15 +18,36 @@
                     <label for="about" class="form-label">المحتوى</label>
                     <textarea class="form-control" id="hiddenContent" name="content"
                         style="width: 100%; height: 100%; display: none;"></textarea>
-                        <input type="hidden" name="wordCount">
+                    <input type="hidden" name="wordCount">
                     <div id="editor" dir="rtl"><%- p.contentHtml %></div>
                     <div id="counter">0 words</div>
                 </div>
-                <button type="button" id="submitBtn" class="btn btn-dark">اضف الفقرة</button>
+                <% p.quizs.forEach(q => { %>
+                <div class="quiz" id="quiz">
+                    <h3>quiz</h3>
+                    <div class="mb-3">
+                        <label for="about" class="form-label">السوؤال</label>
+                        <input type="text" class="form-control" name="quiz" placeholder="السوؤال" value="<%= q.quiz%>"
+                            required>
+                        <input type="text" class="form-control" name="rightAnswer" placeholder="الاجابة الصحيحة"
+                            value="<%= q.rightanswer%>" required>
+                        <input type="text" class="form-control" name="wrongAnswerone" placeholder="اجابة خاطئة"
+                            value="<%=q.wrongAnswerone%>" required>
+                        <input type="text" class="form-control" name="wrongAnswertwo" placeholder="اجابة خاطئة"
+                            value="<%=q.wrongAnswertwo%>" required>
+                        <div class="break"></div>
+                    </div>
+                </div>
+                <%})%>
+                <button type="button" id="addQuiz" class="btn btn-primary"> اضف سوؤال</button>
+                <button type="button" id="submitBtn" class="btn btn-dark">submit</button>
+                <div class="break"></div>
 
             </form>
-            </div>
-            </div>
+        </div>
+    </div>
+</div>
+</div>
 <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
 <script src="/js/admin-edit-read-app.js"></script>
 <%- include('../lay-outs/footer') %>
