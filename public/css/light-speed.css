@@ -1,0 +1,28 @@
+html,
+body,
+.main {
+    height: 100%;
+}
+
+.main {
+    text-align: center;
+    padding-top: 100px;
+}
+#sec,
+#pragBtn {
+    display: inline;
+}
+
+#sec {
+    width: auto;
+}
+
+.test {
+    border: 3px solid #245C13;
+    height: 200px;
+    background: #ddd;
+}
+.words{
+    margin-top: 65px;
+    font-size: 2rem;
+}

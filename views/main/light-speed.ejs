@@ -1,27 +1,24 @@
 <%- include('../lay-outs/head') %>
 <%- include('../lay-outs/nav') %>
 <link rel="stylesheet" href="https://cdn.quilljs.com/1.0.0/quill.snow.css">
+<link rel="stylesheet" href="/css/light-speed.css">
 <div class="main">
     <div class="container">
         <div class="row">
-            <div class="prag col-lg-8">
+            <div class="prag col-lg-12" id="prag">
                 <h6>ادخل النص</h6>
                 <div id="editor"></div>
+                <div class="break"></div>
+                <input type="number" id='sec' class="form-control" placeholder="حدد وقت ظهور الكلمة بالثواني">
                 <button type="button" class="btn btn-dark" id="pragBtn"> ابداء</button>
             </div>
-            <div class="test col-lg-8">
-                <div class="words" id="words"></div>
+            <div class="test col-lg-12" id="test" style="display: none;">
+                <div class="words" id="words">عامر</div>
+                <button type="button" class="btn btn-dark" id="repeat">اعادة</button>
             </div>
         </div>
     </div>
 </div>
 <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
-<script>
-    var quill = new Quill('#editor', {
-        theme: 'snow'
-    });
-    // var editor_content = quill.root.innerHTML
-    
-</script>
-
+<script src="/js/light-speed.js"></script>
 <%- include('../lay-outs/footer') %>
