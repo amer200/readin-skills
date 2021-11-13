@@ -1,0 +1,27 @@
+<%- include('../lay-outs/head') %>
+<%- include('../lay-outs/nav') %>
+<style>
+    .main {
+        height: 83vh;
+        text-align: center;
+        background-image: url('/img/header.jpg');
+        background-size: cover;
+    }
+
+    .main .container {
+        position: relative;
+        top: 45%;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 290px;
+    }
+</style>
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <h3>معدل سرعة قرائتك <%= result.read %></h3>
+            <h3>درجة الفهم <%= result.understand %></h3>
+        </div>
+    </div>
+</div>
+<%- include('../lay-outs/footer') %>

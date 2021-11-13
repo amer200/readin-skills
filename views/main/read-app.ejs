@@ -20,9 +20,10 @@
                 <p class="timer lead">عداد الزمن: <p class="lead timer" id="timer"></p>
                 </p>
                 <div class="prag">
+                    <input type="hidden" value="<%= data.wordCount %>" id="wordsCount">
                     <p class="lead" id="prag">
-                        <h3><%= p.title %></h3>
-                        <%- p.contentHtml %>
+                        <h3><%= data.title %></h3>
+                        <%- data.content %>
                     </p>
                 </div>
                 <button type="button" class="btn btn-dark" id="endApp" data-bs-toggle="modal"
@@ -44,54 +45,35 @@
             </div>
             <div class="modal-body">
                 <form action="/test-result" method="post" id="testForm">
-                    <% p.quizs.forEach( q =>{ %>
-                    <% let answers = [q.rightanswer, q.wrongAnswerone, q.wrongAnswertwo] %>
+                    <input type="hidden" name="average" id="average">
+                    <% for(let i=0; i< data.ques.length; i++){%>
                     <div class="qu">
                         <div class="form-check">
-                            <h5><%= q.quiz %></h5>
-                            <input class="form-check-input" type="radio" name="<%=q._id%>" id="flexRadioDefault1" value="
-                            <%= answers[Math.floor(Math.random() * 3)] %>
-                            ">
-                            <% let myVal = answers[Math.floor(Math.random() * 3)] %>
-                            <% let index = answers.indexOf(answers[Math.floor(Math.random() * 3)]); %>
-                            <%if (index > -1) { %>
-                            <%answers.splice(index, 1);%>
-                            <%}%>
+                            <h5><%= data.ques[i] %></h5>
+                            <input class="form-check-input" type="radio" name="<%= data.ques[i] %>" id="flexRadioDefault1"
+                                value="<%= data.answers[i][0] %>">
                             <label class="form-check-label" for="flexRadioDefault1">
-                                <%= myVal %>
+                                <%= data.answers[i][0] %>
                             </label>
                         </div>
                         <div class=" form-check">
-                            <input class="form-check-input" type="radio" name="<%=q._id%>" id="flexRadioDefault2" value="
-                            <%= answers[Math.floor(Math.random() * 2)] %>
-                            ">
-                            <% myVal = answers[Math.floor(Math.random() * 2)] %>
-                            <%  index = answers.indexOf(answers[Math.floor(Math.random() * 2)]); %>
-                            <%if (index > -1) { %>
-                            <%answers.splice(index, 1);%>
-                            <%}%>
+                            <input class="form-check-input" type="radio" name="<%= data.ques[i] %>" id="flexRadioDefault2"
+                                value="<%= data.answers[i][1] %> %>">
                             <label class="form-check-label" for="flexRadioDefault2">
-                                <%= myVal %>
+                                <%= data.answers[i][1] %>
                             </label>
                         </div>
                         <div class=" form-check">
-                            <input class="form-check-input" type="radio" name="<%=q._id%>" id="flexRadioDefault3"
-                                checked value="
-                                <%= answers[Math.floor(Math.random() * 1)] %>
-                                ">
-                            <% myVal = answers[Math.floor(Math.random() * 1)]%>
-                            <% index = answers.indexOf(answers[Math.floor(Math.random() * 1)]); %>
-                            <%if (index > -1) { %>
-                            <%answers.splice(index, 1);%>
-                            <%}%>
+                            <input class="form-check-input" type="radio" name="<%= data.ques[i] %>" id="flexRadioDefault3"
+                                checked value="<%= data.answers[i][2] %>">
                             <label class="form-check-label" for="flexRadioDefault3">
-                                <%= myVal %>
+                                <%= data.answers[i][2] %>
                             </label>
                         </div>
                     </div>
                     <div class=" break">
                     </div>
-                    <%})%>
+                    <%}%>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">انهاء</button>
