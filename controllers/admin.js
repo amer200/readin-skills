@@ -1,5 +1,6 @@
 const MainPage = require('../modells/main-page');
 const Paragraph = require('../modells/paragraph');
+const Blog = require('../modells/blog');
 const mongoose = require('mongoose');
 
 
@@ -176,6 +177,49 @@ exports.postEditParagraph = (req, res, next) => {
             res.redirect('/admin/read-app');
         })
         .catch(err => {
+            console.log(err);
+        })
+}
+// mix 
+exports.getMix = (req, res, next) => {
+    Blog.find()
+        .then(blogs => {
+            res.render('admin/mix',{
+                blogs: blogs
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+exports.postAddMix = (req, res, next) => {
+    const title = req.body.title;
+    const content = req.body.content;
+    const textContent = req.body.textContent;
+    const img = req.body.img;
+    const blog = new Blog({
+        title: title,
+        content: content,
+        text: textContent,
+        img: img
+    })
+    blog.save()
+        .then(result => {
+            res.redirect('/mix');
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+exports.getEditPost = (req, res, next) => {
+    const postId = req.params.postId;
+    Blog.findById(postId)
+        .then( post => {
+            res.render('admin/edit-post', {
+                post: post
+            })
+        })
+        .catch( err => {
             console.log(err);
         })
 }

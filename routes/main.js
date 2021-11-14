@@ -10,6 +10,8 @@ router.post('/test-result', mainControllers.calcTestResult);
 router.get('/test-result', mainControllers.getTestResult);
 // light speed
 router.get('/light-speed', mainControllers.lightSpeed);
-
+// mix
+router.get('/mix', mainControllers.getMix);
+router.get('/post/:postId', mainControllers.getPost);
 //export module
 module.exports = router;

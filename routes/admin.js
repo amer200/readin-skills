@@ -11,5 +11,9 @@ router.post('/add-paragraph', adminControllers.postAddParagraph);
 router.post('/delete-prag/:pId', adminControllers.DeleteParagraph);
 router.get('/edit-prag/:pId', adminControllers.EditParagraph);
 router.post('/edit-paragraph/:pId', adminControllers.postEditParagraph);
+// mix 
+router.get('/mix', adminControllers.getMix);
+router.post('/add-mix', adminControllers.postAddMix);
+router.get('/edit-post/:postId', adminControllers.getEditPost);
 //export module
 module.exports = router;
