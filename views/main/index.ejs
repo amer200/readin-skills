@@ -15,7 +15,9 @@
 <div class="about" id="about">
     <h1>عن بيئة التعلم <i class="fas fa-question-circle"></i></h1>
     <div class="container">
+        <% if(data !== null){ %>
         <p class="lead"><%= data.about%>
+        <%}%>
         </p>
     </div>
 </div>
@@ -23,7 +25,9 @@
 <div class="brief" id="brief">
     <h1>السيرة الذاتية <i class="fas fa-graduation-cap"></i></h1>
     <div class="container">
+        <% if(data !== null){ %>
         <p class="lead"><%= data.brief%>
+            <%}%>
         </p>
     </div>
 </div>

@@ -22,23 +22,29 @@ exports.getReadApp = (req, res, next) => {
         .then(p => {
             const allAnswers = [];
             const ques = [];
-            p.quizs.forEach(q => {
-                const answer = [q.rightanswer, q.wrongAnswerone, q.wrongAnswertwo];
-                allAnswers.push(shuffle(answer));
-            })
-            p.quizs.forEach(q => {
-                ques.push(q.quiz)
-            })
-            const data = {
-                title: p.title,
-                content: p.content,
-                wordCount: p.wordcount,
-                ques: ques, // array
-                answers: allAnswers // array
+            if (p) {
+                p.quizs.forEach(q => {
+                    const answer = [q.rightanswer, q.wrongAnswerone, q.wrongAnswertwo];
+                    allAnswers.push(shuffle(answer));
+                })
+                p.quizs.forEach(q => {
+                    ques.push(q.quiz)
+                })
+                const data = {
+                    title: p.title,
+                    content: p.content,
+                    wordCount: p.wordcount,
+                    ques: ques, // array
+                    answers: allAnswers // array
+                }
+                res.render('main/read-app', {
+                    data: data
+                })
+            }else{
+                res.render('main/read-app', {
+                    data: null
+                })
             }
-            res.render('main/read-app', {
-                data: data
-            })
         })
         .catch(err => {
             console.log(err);
@@ -82,23 +88,29 @@ exports.lightSpeed = (req, res, next) => {
 exports.getMix = (req, res, next) => {
     Blog.find()
         .then(blogs => {
-            res.render('main/mix', {
-                blogs: blogs
-            })
+            if(blogs.lenght){
+                res.render('main/mix', {
+                    blogs: blogs
+                })
+            }else{
+                res.render('main/mix', {
+                    blogs: null
+                })
+            }
         })
         .catch(err => {
             console.log(err);
         })
 }
-exports.getPost =(req, res, next) => {
+exports.getPost = (req, res, next) => {
     const postId = req.params.postId;
     Blog.findById(postId)
-        .then( post => {
+        .then(post => {
             res.render('main/post', {
                 post: post
             })
         })
-        .catch( err => {
+        .catch(err => {
             console.log(err);
         })
 }

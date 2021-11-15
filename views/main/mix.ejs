@@ -11,12 +11,16 @@
 </header> -->
 <!-- Page content-->
 <div class="container" style="padding-top: 70px;">
+    <% if(blogs === null){%>
+    <h1>لا يوجد موضوعات بعد </h1>
+    <%}else{%>
     <div class="row">
         <!-- Blog entries-->
         <div class="col-lg-8">
             <!-- Featured blog post-->
             <div class="card mb-4">
-                <a href="post/<%= blogs[blogs.length-1]._id%>"><img class="card-img-top" src="<%= blogs[blogs.length-1].img %>" alt="..." /></a>
+                <a href="post/<%= blogs[blogs.length-1]._id%>"><img class="card-img-top"
+                        src="<%= blogs[blogs.length-1].img %>" alt="..." /></a>
                 <div class="card-body">
                     <h2 class="card-title"><%= blogs[blogs.length-1].title %></h2>
                     <p class="card-text"><%- blogs[blogs.length-1].text.substr(0,100) %>...</p>
@@ -25,8 +29,8 @@
             </div>
             <!-- Nested row for non-featured blog posts-->
             <div class="row">
-                    <% for(let i=0; i< blogs.length-1; i++){ %>
-                        <div class="col-lg-6">
+                <% for(let i=0; i< blogs.length-1; i++){ %>
+                <div class="col-lg-6">
                     <!-- Blog post-->
                     <div class="card mb-4">
                         <a href="/post/<%=blogs[i]._id%>"><img class="card-img-top" src="<%=blogs[i].img %>"
@@ -38,28 +42,29 @@
                         </div>
                     </div>
                 </div>
-                    <%}%>
+                <%}%>
+                </div>
             </div>
-        </div>
-        <!-- Side widgets-->
-        <div class="col-lg-4">
-            <!-- Search widget-->
-            <!-- Categories widget-->
-            <div class="card mb-4">
-                <div class="card-header">افضل الطلاب</div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="#!">المركز الاول</a></li>
-                                <li><a href="#!">المركز الثاني</a></li>
-                                <li><a href="#!">المركز الثالث</a></li>
-                            </ul>
+            <!-- Side widgets-->
+            <div class="col-lg-4">
+                <!-- Search widget-->
+                <!-- Categories widget-->
+                <div class="card mb-4">
+                    <div class="card-header">افضل الطلاب</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <ul class="list-unstyled mb-0">
+                                    <li><a href="#!">المركز الاول</a></li>
+                                    <li><a href="#!">المركز الثاني</a></li>
+                                    <li><a href="#!">المركز الثالث</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<%- include('../lay-outs/footer') %>
+    <%}%>
+            </div>
+            <%- include('../lay-outs/footer') %>

@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const ejs = require('ejs');
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 // config body parser
 // parse application/x-www-form-urlencoded
@@ -24,7 +24,7 @@ app.use('/admin', adminRoutes);
 app.use('/', mainRoutes);
 app.listen(port, () => {
     console.log(`Elearning app listening at http://localhost:${port}`)
-    mongoose.connect('mongodb://localhost:27017/Elearning')
+    mongoose.connect('mongodb+srv://drhasan:753698@cluster0.utxxi.mongodb.net/speedreading')
         .then( result => {
             console.log('conectet to database')
         })
@@ -32,3 +32,4 @@ app.listen(port, () => {
             console.log(err);
         })
   })
+  // RU}R2m=r];b! key
