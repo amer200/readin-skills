@@ -1,33 +1,56 @@
-header{
+header {
     height: 500px;
-    background-image: url('/img/header.jpg');
-    background-size: cover;
+    background-image: url('/img/header.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
     padding-top: 150px;
-    text-align: center;
+    text-align: left;
 }
-header .links{
-    margin-left: auto;
-    margin-right: auto;
+
+header .links {
+    width: 50%;
+    margin-right: 55%;
+    margin-top: -17px;
 }
-header .links .btn-primary{
-    background-color: #125C13 !important;
+
+header .links .btn-primary {
+    background-color: #60DA5B !important;
     border: none;
+    display: block;
+    margin-bottom: 10px;
 }
+
 .about,
 .brief,
-.contact{
+.contact {
     text-align: center;
 }
+
 .contact .form,
-.contact .info{
+.contact .info {
     text-align: right;
 }
-.contact .info ul{
+
+.contact .info ul {
     margin-top: 20%;
 }
-i{
+
+i {
     color: #ECECEC;
 }
-.contact i{
+
+.contact i {
     color: #125C13;
+}
+
+@media (max-width: 720px) {
+    header {
+        padding-top: 0;
+    }
+
+    header .links {
+        margin-top: 30px;
+        margin-right: auto;
+    }
 }

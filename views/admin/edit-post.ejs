@@ -9,7 +9,7 @@
 <div class="add-blog">
     <div class='container'>
         <h1>اضافة موضوع</h1>
-        <form action="/admin/add-mix" method="post" id="addForm">
+        <form action="/admin/edit-post/<%=post._id%>" method="post" id="addForm">
             <div class="mb-3">
                 <label for="about" class="form-label">العنوان</label>
                 <input type="text" class="form-control" name="title" value="<%= post.title %>">

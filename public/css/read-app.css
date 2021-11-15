@@ -1,20 +1,50 @@
+body {
+    background-image: url('/img/speed-test.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
 .my-modal {
     height: 83vh;
     text-align: center;
 }
 
 .my-modal .content {
-    margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
     padding: 20px;
     border: 2px solid #245C13;
-    background-color: #eee;
+    color: #000;
+    background-color: rgba(96, 218, 91, 0.7);
 }
-.page{
+
+.app {
+    border: 2px solid #245C13;
+    color: #000;
+    background-color: rgba(96, 218, 91, 0.7);
+    padding-bottom: 20px;
+}
+
+.page {
     height: 83Vh;
     padding: 100px;
 }
-.timer{
+
+.timer {
     display: inline;
+}
+
+@media (max-width: 980px) {
+    .my-modal .content {
+        height: 140px;
+        overflow-y: scroll;
+    }
+}
+
+@media (max-width: 720px) {
+    .page {
+        overflow-y: scroll;
+        padding: 5px;
+    }
 }

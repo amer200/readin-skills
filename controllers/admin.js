@@ -223,3 +223,24 @@ exports.getEditPost = (req, res, next) => {
             console.log(err);
         })
 }
+exports.postEditPost = (req, res, next) => {
+    const postId = req.params.postId;
+    const title = req.body.title;
+    const content = req.body.content;
+    const textContent = req.body.textContent;
+    const img = req.body.img;
+    Blog.findById(postId)
+        .then( post => {
+            post.title = title;
+            post.content = content;
+            post.text = textContent;
+            post.img = img;
+            return post.save();
+        })
+        .then( result => {
+            res.redirect('/admin/mix');
+        })
+        .catch( err => {
+            console.log(err);
+        })
+}

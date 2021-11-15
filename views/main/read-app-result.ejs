@@ -4,23 +4,25 @@
     .main {
         height: 83vh;
         text-align: center;
-        background-image: url('/img/header.jpg');
-        background-size: cover;
+        background-image: url('/img/speed-test.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
     }
 
     .main .container {
         position: relative;
         top: 45%;
-        color: #fff;
-        background-color: rgba(0, 0, 0, 0.5);
         width: 290px;
+        border: 2px solid #245C13;
+        background-color: rgba(96, 218, 91, 0.7);
     }
 </style>
 <div class="main">
     <div class="container">
         <div class="row">
-            <h3>معدل سرعة قرائتك <%= result.read %></h3>
-            <h3>درجة الفهم <%= result.understand %></h3>
+            <h3>معدل سرعة قرائتك <%= result.read %> كلمة في الدقيقة</h3>
+            <h3>درجة الفهم <%= result.understand %>%</h3>
         </div>
     </div>
 </div>
