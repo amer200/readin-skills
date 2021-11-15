@@ -88,7 +88,7 @@ exports.lightSpeed = (req, res, next) => {
 exports.getMix = (req, res, next) => {
     Blog.find()
         .then(blogs => {
-            if(blogs.lenght){
+            if(blogs[0]){
                 res.render('main/mix', {
                     blogs: blogs
                 })
