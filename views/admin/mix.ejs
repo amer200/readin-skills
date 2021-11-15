@@ -43,6 +43,9 @@
                     <h2 class="card-title h4"><%=blogs[i].title%></h2>
                     <p class="card-text"><%=blogs[i].text.substr(0,100)%>...</p>
                     <a class="btn btn-primary" href="/admin/edit-post/<%=blogs[i]._id%>">تعديل</a>
+                    <form action="/admin/delete-post/<%=blogs[i]._id%>" method="post">
+                        <button type="submit" class="btn btn-danger"> حذف</button>
+                    </form>
                 </div>
             </div>
         </div>

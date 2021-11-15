@@ -244,3 +244,13 @@ exports.postEditPost = (req, res, next) => {
             console.log(err);
         })
 }
+exports.deletePost = (req, res, next) =>{
+    const postId = req.params.postId;
+    Blog.findByIdAndRemove(postId)
+        .then( result => {
+            res.redirect('/admin/mix');
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}

@@ -16,5 +16,6 @@ router.get('/mix', adminControllers.getMix);
 router.post('/add-mix', adminControllers.postAddMix);
 router.get('/edit-post/:postId', adminControllers.getEditPost);
 router.post('/edit-post/:postId', adminControllers.postEditPost);
+router.post('/delete-post/:postId', adminControllers.deletePost);
 //export module
 module.exports = router;
