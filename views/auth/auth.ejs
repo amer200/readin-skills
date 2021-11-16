@@ -1,0 +1,62 @@
+<%- include('../lay-outs/head') %>
+<section class="vh-100" style="padding-top: 50px;">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/draw2.png" class="img-fluid"
+            alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <% if(route == 'login'){%>
+          <form action="/login" method="post">
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <% if(nameErr){ %>
+                    <label class="form-label" for="form3Example3" style="color: red;">اسم الطالب خطاء</label>
+                <%}%>
+              <input type="text" name="name" id="form3Example3" class="form-control form-control-lg"
+                placeholder="اسم الطالب" />
+              <label class="form-label" for="form3Example3">اسم الطالب</label>
+            </div>
+  
+            <!-- Password input -->
+            <div class="form-outline mb-3">
+                <% if(passwordErr){ %>
+                    <label class="form-label" for="form3Example4" style="color: red;">كلمة المرور خطاء</label>
+                <%}%>
+              <input type="password" name="password" id="form3Example4" class="form-control form-control-lg"
+                placeholder="كلمة المرور" />
+              <label class="form-label" for="form3Example4">كلمة المرور</label>
+            </div>
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button type="submit" class="btn btn-primary btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;">تسجيل الدخول</button>
+            </div>
+          </form>
+          <%}else{%>
+            <form action="/login" method="post">
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <% if(nameErr){ %>
+                        <label class="form-label" for="form3Example3" style="color: red;">اسم الطالب غير متاح</label>
+                    <%}%>
+                  <input type="text" name="name" id="form3Example3" class="form-control form-control-lg"
+                    placeholder="اسم الطالب" />
+                  <label class="form-label" for="form3Example3">اسم الطالب</label>
+                </div>
+      
+                <!-- Password input -->
+                <div class="form-outline mb-3">
+                  <input type="password" name="password" id="form3Example4" class="form-control form-control-lg"
+                    placeholder="كلمة المرور" />
+                  <label class="form-label" for="form3Example4">كلمة المرور</label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;">تسجيل</button>
+              </form>
+            <%}%>
+        </div>
+      </div>
+    </div>
+    <%- include('../lay-outs/footer') %>
+  </section>

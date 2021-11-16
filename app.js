@@ -3,8 +3,16 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 const ejs = require('ejs');
+const session = require('express-session')
 const app = express();
 const port = process.env.PORT || 3000;
+const User = require('./modells/user'); //tempr
+//config session
+app.use(session({
+    secret: 'my secret',
+    resave: false,
+    saveUninitialized: false
+}));
 
 // config body parser
 // parse application/x-www-form-urlencoded
@@ -22,16 +30,33 @@ app.set('view engine', 'ejs');
 // routes
 const mainRoutes = require('./routes/main');
 const adminRoutes = require('./routes/admin');
+const authRoutes = require('./routes/auth');
+app.use(authRoutes);
 app.use('/admin', adminRoutes);
 app.use('/', mainRoutes);
 app.listen(port, () => {
-    console.log(`Elearning app listening at http://localhost:${port}`)
+    console.log(`Elearning app listening at http://localhost:${port}`);
     mongoose.connect('mongodb+srv://drhasan:753698@cluster0.utxxi.mongodb.net/speedreading')
         .then(result => {
-            console.log('conectet to database')
+            console.log('conectet to database');
+            User.findOne()
+                .then( user => {
+                    if(!user){
+                        const user = new User({
+                            name: "amer",
+                            password: "123",
+                            role: 'admin'
+                        });
+                        return user.save()
+                    }else{
+                        return user
+                    }
+                })
+                .then(result => {
+                    console.log('user is ok');
+                })
         })
         .catch(err => {
             console.log(err);
         })
 })
-// RU}R2m=r];b! key

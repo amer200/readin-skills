@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const adminControllers = require('../controllers/admin');
+const auth = require('../auth/basicAuth');
 //index page
-router.get('/', adminControllers.getIndex);
+router.get('/', auth, adminControllers.getIndex);
 router.post('/edit-main-page', adminControllers.EditMainPage);
 
 // read app
