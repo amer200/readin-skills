@@ -29,10 +29,16 @@
               <li class="nav-item">
                   <a class="nav-link b-left" href="#">اتصل بنا</a>
               </li>
-              <li class="nav-item auth-item">
+              <% if(user){ %>
+                <li class="nav-item auth-item">
+                  <a class="nav-link " href="#">مرحبا <%= user.name%></a>
+              </li>
+              <%}else{%>
+                <li class="nav-item auth-item">
                   <a class="nav-link " href="/auth">تسجيل الدخول</a>
                   <a class="nav-link b-left" href="/signup">تسجيل حساب جديد</a>
               </li>
+                <%}%>
           </ul>
       </div>
   </div>

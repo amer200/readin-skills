@@ -4,8 +4,8 @@ const adminControllers = require('../controllers/admin');
 const auth = require('../auth/basicAuth');
 //index page
 router.get('/', auth, adminControllers.getIndex);
-router.post('/edit-main-page', auth, adminControllers.EditMainPage);
-
+router.post('/brief', auth, adminControllers.brief);
+router.post('/about', auth, adminControllers.about);
 // read app
 router.get('/read-app', auth,  adminControllers.getReadApp);
 router.post('/add-paragraph', auth,  adminControllers.postAddParagraph);

@@ -15,33 +15,34 @@ exports.getIndex = (req, res, next) => {
             console.log(err)
         })
 }
-exports.EditMainPage = (req, res, next) => {
-    const brief = req.body.brief;
-    const about = req.body.about;
-    const mainpage = new MainPage({
-        about: about,
-        brief: brief
-    });
+exports.brief = (req, res, next) => {
+    const content = req.body.content;
     MainPage.findOne()
-        .then(page => {
-            if (!page) {
-                return mainpage.save().then(result => {
-                    res.redirect('/admin/')
-                })
-            } else {
-                page.about = about;
-                page.brief = brief;
-                page.save()
-                    .then(result => {
-                        res.redirect('/admin/')
-                    })
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        })
+            .then( p => {
+                p.brief = content;
+                return p.save()
+            })
+            .then(result => {
+                res.redirect('/admin')
+            })
+            .catch( err => {
+                console.log(err)
+            })
 }
-
+exports.about = (req, res, next) => {
+    const content = req.body.content;
+    MainPage.findOne()
+            .then( p => {
+                p.about = content;
+                return p.save()
+            })
+            .then(result => {
+                res.redirect('/admin')
+            })
+            .catch( err => {
+                console.log(err)
+            })
+}
 
 // read app
 

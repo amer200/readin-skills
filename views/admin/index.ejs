@@ -1,40 +1,59 @@
 <%- include('../lay-outs/head') %>
+<%- include('../lay-outs/nav') %>
+<!-- quill css -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/admin.css">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="text-align: center; background-color: #888 !important;">
-  <h3 style="color: #fff; margin-left: auto;
-    margin-right: auto;">admin area</h3>
-</nav>
-<%- include('../lay-outs/admin-nav') %>
-<div class="container-fluid">
-  <div class="main">
-    <h1>الرئيسية</h1>
-    <div class="row">
-      <form action="/admin/edit-main-page" method="post">
-        <div class="about">
-          <h3>عن بيئة التعلم</h3>
-          <div class="mb-3">
-            <label for="about" class="form-label">المحتوى</label>
-            <% if(MainPageData !== null){%>
-            <textarea class="form-control" id="about" name="about" rows="6"><%= MainPageData.about %></textarea>
-            <% }else{ %>
-            <textarea class="form-control" id="about" name="about" rows="6"></textarea>
-            <%}%>
-              </div>
-        </div>
-        <div class="brief">
-            <h3>السيرة الذاتية</h3>
-            <div class="mb-3">
-                <label for="about" class="form-label">المحتوى</label>
-                <% if(MainPageData !== null){%>
-            <textarea class="form-control" id="about" name="brief" rows="6"><%= MainPageData.brief %></textarea>
-            <% }else{ %>
-            <textarea class="form-control" id="about" name="brief" rows="6"></textarea>
-            <%}%>
-              </div>
-        </div>
-        <button type="submit" class="btn btn-dark"> حفظ التعديلات</button>
-    </form>
-    </div>
-  </div>
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <svg class="bi me-2" width="40" height="32">
+      <use xlink:href="#bootstrap" /></svg>
+    <span class="fs-4">المدير:<%=user.name%></span>
+  </a>
+  <hr>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
+      <a class="nav-link text-white" id="brief">
+        <svg class="bi me-2" width="16" height="16">
+          <use xlink:href="#home" /></svg>
+        السيرة الذاتية
+      </a>
+    </li>
+    <li>
+      <a class="nav-link text-white" id="about">
+        <svg class="bi me-2" width="16" height="16">
+          <use xlink:href="#speedometer2" /></svg>
+        عن بيئة التعلم
+      </a>
+    </li>
+    <li>
+      <a href="#read-app" class="nav-link text-white">
+        <svg class="bi me-2" width="16" height="16">
+          <use xlink:href="#table" /></svg>
+        تطبيق القراءة السريعة و الفهم القرائي
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link text-white">
+        <svg class="bi me-2" width="16" height="16">
+          <use xlink:href="#grid" /></svg>
+        تطبيق الومضة السريعة
+      </a>
+    </li>
+  </ul>
 </div>
+
+<form class="myForm" id="myForm" method="post">
+  <div class="mb-3">
+    <label class="form-label" id="Lab"></label>
+    <!-- Create the editor container -->
+    <div id="editor">
+    </div>
+    <input type="hidden" name="content" id="content">
+  </div>
+  <button type="button" id="subBtn" class="btn btn-dark">حفظ</button>
+</form>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js"></script>
+<script src="/js/qull-config.js"></script>
+<script src="/js/admin.js"></script>
 <%- include('../lay-outs/footer') %>
