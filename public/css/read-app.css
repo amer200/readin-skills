@@ -1,50 +1,61 @@
-body {
-    background-image: url('/img/speed-test.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: right;
-}
-
-.my-modal {
-    height: 83vh;
+header {
+    height: 200px;
+    background-color: #306BC6;
+    margin-bottom: 50px;
     text-align: center;
+    color: #fff;
 }
 
-.my-modal .content {
+header h1 {
+    position: relative;
+    top: 95px;
+}
+
+.str {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid;
+    width: 90%;
     margin-right: auto;
-    margin-top: 50px;
-    padding: 20px;
-    border: 2px solid #245C13;
-    color: #000;
-    background-color: rgba(96, 218, 91, 0.7);
+    margin-left: auto;
+    padding: 0;
 }
 
-.app {
-    border: 2px solid #245C13;
-    color: #000;
-    background-color: rgba(96, 218, 91, 0.7);
-    padding-bottom: 20px;
+.str .tex {
+    width: 100%;
+    color: #fff;
+    padding-right: 25px;
+    background-color: #E48823;
+    height: 35px;
+    line-height: 2;
 }
 
-.page {
-    height: 83Vh;
-    padding: 100px;
+.list-group-numbered {
+    border: none;
 }
 
-.timer {
+.list-group-item {
+    border: none;
+}
+.menu{
+    padding: 55px;
+}
+.menu h1,
+.menu .dropdown{
     display: inline;
 }
-
-@media (max-width: 980px) {
-    .my-modal .content {
-        height: 140px;
-        overflow-y: scroll;
-    }
+.menu .dropdown-toggle{
+    margin-top: -10px;
 }
-
-@media (max-width: 720px) {
-    .page {
-        overflow-y: scroll;
-        padding: 5px;
+.read-img{
+    padding-left: 65px;
+}
+@media (max-width: 991px){
+    .menu .dropdown-toggle{
+        margin-left: -15%;
+        margin-top: -5px;
+    }
+    .read-img{
+        display: none;
     }
 }

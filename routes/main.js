@@ -3,7 +3,8 @@ const router = express.Router();
 const mainControllers = require('../controllers/main');
 //index page
 router.get('/', mainControllers.getIndex);
-
+router.get('/brief', mainControllers.getBrief);
+router.get('/about', mainControllers.getAbout);
 // read app
 router.get('/read-app', mainControllers.getReadApp);
 router.post('/test-result', mainControllers.calcTestResult);

@@ -5,15 +5,23 @@ const Blog = require('../modells/blog');
 const mongoose = require('mongoose');
 
 exports.getIndex = (req, res, next) => {
+    res.render('main/index');
+}
+exports.getBrief = (req, res, next) => {
     MainPage.findOne()
-        .then(data => {
-            res.render('main/index', {
-                data: data
+            .then(p=>{
+                res.render('main/brief',{
+                    b: p.brief
+                })
             })
+}
+exports.getAbout = (req, res, next) => {
+    MainPage.findOne()
+    .then(p=>{
+        res.render('main/about',{
+            b: p.about
         })
-        .catch(err => {
-            console.log(err);
-        })
+    })
 }
 exports.getReadApp = (req, res, next) => {
     function shuffle(array) {
@@ -41,7 +49,7 @@ exports.getReadApp = (req, res, next) => {
                 res.render('main/read-app', {
                     data: data
                 })
-            }else{
+            } else {
                 res.render('main/read-app', {
                     data: null
                 })
@@ -97,11 +105,11 @@ exports.lightSpeed = (req, res, next) => {
 exports.getMix = (req, res, next) => {
     Blog.find()
         .then(blogs => {
-            if(blogs[0]){
+            if (blogs[0]) {
                 res.render('main/mix', {
                     blogs: blogs
                 })
-            }else{
+            } else {
                 res.render('main/mix', {
                     blogs: null
                 })

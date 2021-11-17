@@ -1,0 +1,12 @@
+header {
+    height: 200px;
+    background-color: #306BC6;
+    margin-bottom: 50px;
+    text-align: center;
+    color: #fff;
+}
+
+header h1 {
+    position: relative;
+    top: 95px;
+}

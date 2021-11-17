@@ -1,0 +1,36 @@
+.navbar-brand img {
+    height: 50px;
+}
+
+.navbar-expand-lg .navbar-nav {
+    margin-top: 35px;
+    margin-right: 0 !important;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-left: 0;
+    padding-right: 10px;
+    font-size: .9rem;
+    color: #000 ;
+}
+
+.nav-item {
+    padding: 0%;
+    margin: 0;
+    font-size: 1rem;
+}
+
+nav .auth-item {
+    position: relative;
+    right: 1%;
+    margin-bottom: auto;
+    margin-top: 4px;
+}
+
+nav .auth-item .nav-link {
+    display: inline;
+}
+
+.bg-light {
+    background-color: #fff !important;
+}

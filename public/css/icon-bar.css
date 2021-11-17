@@ -1,0 +1,13 @@
+.icon-bar{
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 30px;
+
+}
+.icon-bar img{
+    width: 115px;
+}
+.icon-bar .lead{
+    color: #999;
+    font-size: .9rem;
+}

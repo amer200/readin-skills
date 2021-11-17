@@ -1,0 +1,17 @@
+footer{
+    background-color: #363940;
+    margin-top: 20px;
+    padding-top: 30px;
+}
+footer .list-group-item{
+    background: none;
+    color: #fff;
+    border: none;
+}
+footer .lead,
+footer h5{
+    color: #fff;
+}
+footer a{
+    text-align: left;
+}

@@ -1,72 +1,55 @@
 <%- include('../lay-outs/head') %>
-<%- include('../lay-outs/nav') %>
 <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/icon-bar.css">
 <header>
-    <div class="container">
-        <div class="row">
-            <div class="links col-lg-4">
-                <%if(!user){%>
-                    <a href="#" class="btn btn-primary">تسجيل الدخول</a>
-                    <a href="#" class="btn btn-primary">تسجيل حساب جديد</a>
-                <%}else{%>
-                    <a href="#" class="btn btn-primary">مرحبا <%=user.name%></a>
-                <%}%>
-            </div>
-        </div>
+    <div class="container-fluid">
     </div>
 </header>
-<div class="break" style="border: none;"></div>
-<div class="about" id="about">
-    <h1>عن بيئة التعلم <i class="fas fa-question-circle"></i></h1>
-    <div class="container">
-        <% if(data !== null){ %>
-        <p class="lead"><%= data.about%>
-        <%}%>
-        </p>
-    </div>
-</div>
-<div class="break"></div>
-<div class="brief" id="brief">
-    <h1>السيرة الذاتية <i class="fas fa-graduation-cap"></i></h1>
-    <div class="container">
-        <% if(data !== null){ %>
-        <p class="lead"><%= data.brief%>
-            <%}%>
-        </p>
-    </div>
-</div>
-<div class="break"></div>
-<div class="contact" id="contact">
-    <h1>اتصل بنا</h1>
-    <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/">الرئيسية</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link b-left" href="/brief">السيرة الذاتية</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link b-left" href="/about">عن بيئة التعلم</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link b-left" href="/read-app">تطبيق القراءة السريعة والفهم القرائي</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link b-left" href="#">تطبيق الومضة السريعة</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link b-left" href="#">منوعات</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link b-left" href="#">اتصل بنا</a>
+              </li>
+              <li class="nav-item auth-item">
+                  <a class="nav-link " href="/auth">تسجيل الدخول</a>
+                  <a class="nav-link b-left" href="/signup">تسجيل حساب جديد</a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</nav>
+
+<%- include('../lay-outs/icon-bar') %>
+<div class="imgs">
+    <div class="container-fluid">
         <div class="row">
-            <div class="form col-lg-8">
-                <form action="/contac-us" method="post">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">البريد الالكتروني</label>
-                        <input type="email" class="form-control" id="email" placeholder="name@example.com">
-                    </div>
-                    <div class="mb-3">
-                        <label for="name" class="form-label">الاسم</label>
-                        <input type="text" class="form-control" id="name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="content" class="form-label">محتوى الرسالة</label>
-                        <textarea class="form-control" id="content" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-dark"> ارسل</button>
-                </form>
-            </div>
-            <div class="info col-lg-3">
-                <ul class="list-group">
-                    <li class="list-group-item"><i class="fab fa-whatsapp"></i> 0112457792</li>
-                    <li class="list-group-item"><i class="fab fa-facebook-f"></i> www.facebook.com</li>
-                    <li class="list-group-item"><i class="fab fa-telegram-plane"></i> @Elearning</li>
-                    <li class="list-group-item"><i class="fas fa-envelope"></i> Elearning@Elearning.com</li>
-                </ul>
-            </div>
+            <img class="col-lg-6" src="/img/index1.jpg" alt="img" style="padding: 0;">
+            <img class="col-lg-6" src="/img/index2.jpg" alt="img" style="padding: 0;">
         </div>
     </div>
 </div>
-<div class="break"></div>
 <%- include('../lay-outs/footer') %>
