@@ -1,88 +1,40 @@
 <%- include('../lay-outs/head') %>
 <%- include('../lay-outs/nav') %>
 <link rel="stylesheet" href="/css/read-app.css">
-<div class="my-modal" id="modal">
+<header>
     <div class="container">
-        <div class="row">
-            <div class="content col-lg-5">
-                <p class="lead">شرح للطالب على البرنامج هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
-                    هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى
-                    زيادة عدد الحروف التى يولدها التطبيق.</p>
-                <button class="btn btn-dark" id="modalBtn"> موافق </button>
+        <h1>تطبيق القراءة السريعة</h1>
+    </div>
+</header>
+<div class="container-fluid">
+    <div class="row">
+        <div class="str col-12">
+            <div class="tex">لحساب سرعة القراءة الخاصة بك عليك اتباع التعليمات التالية:</div>
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Cras justo odio</li>
+              </ol>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="choose col-lg-6">
+            <div class="menu">
+                <h1>اختيار القطعة:</h1>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      القطعة
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="#"></a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </div>
             </div>
         </div>
+        <img class="col-6 read-img" src="/img/header.png" alt="">
     </div>
 </div>
-<% if(data !== null){ %>
- <div class="page d-none" id="page">
-    <div class="container">
-        <div class="row">
-            <div class="app">
-                <p class="timer lead">عداد الزمن: <p class="lead timer" id="timer"></p>
-                </p>
-                <div class="prag">
-                    <input type="hidden" value="<%= data.wordCount %>" id="wordsCount">
-                    <p class="lead" id="prag">
-                        <h3><%= data.title %></h3>
-                        <%- data.content %>
-                    </p>
-                </div>
-                <button type="button" class="btn btn-dark" id="endApp" data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop">
-                    انهاء القراءة
-                </button>
-            </div>
-        </div>
-    </div>
-    </div>
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">اختبار درجة الفهم</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="/test-result" method="post" id="testForm">
-                    <input type="hidden" name="average" id="average">
-                    <% for(let i=0; i< data.ques.length; i++){%>
-                    <div class="qu">
-                        <div class="form-check">
-                            <h5><%= data.ques[i] %></h5>
-                            <input class="form-check-input" type="radio" name="<%= data.ques[i] %>" id="flexRadioDefault1"
-                                value="<%= data.answers[i][0] %>">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                <%= data.answers[i][0] %>
-                            </label>
-                        </div>
-                        <div class=" form-check">
-                            <input class="form-check-input" type="radio" name="<%= data.ques[i] %>" id="flexRadioDefault2"
-                                value="<%= data.answers[i][1] %> %>">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                <%= data.answers[i][1] %>
-                            </label>
-                        </div>
-                        <div class=" form-check">
-                            <input class="form-check-input" type="radio" name="<%= data.ques[i] %>" id="flexRadioDefault3"
-                                checked value="<%= data.answers[i][2] %>">
-                            <label class="form-check-label" for="flexRadioDefault3">
-                                <%= data.answers[i][2] %>
-                            </label>
-                        </div>
-                    </div>
-                    <div class=" break">
-                    </div>
-                    <%}%>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">انهاء</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<%}%>
-<script src="/js/read-app.js"></script>
+<%- include('../lay-outs/icon-bar') %>
 <%- include('../lay-outs/footer') %>
