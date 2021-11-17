@@ -5,8 +5,12 @@
     <div class="container">
         <div class="row">
             <div class="links col-lg-4">
-                <a href="#" class="btn btn-primary">تسجيل الدخول</a>
-                <a href="#" class="btn btn-primary">تسجيل حساب جديد</a>
+                <%if(!user){%>
+                    <a href="#" class="btn btn-primary">تسجيل الدخول</a>
+                    <a href="#" class="btn btn-primary">تسجيل حساب جديد</a>
+                <%}else{%>
+                    <a href="#" class="btn btn-primary">مرحبا <%=user.name%></a>
+                <%}%>
             </div>
         </div>
     </div>

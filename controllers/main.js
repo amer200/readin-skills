@@ -1,5 +1,6 @@
 const MainPage = require('../modells/main-page');
 const Paragraph = require('../modells/paragraph');
+const User = require('../modells/user');
 const Blog = require('../modells/blog');
 const mongoose = require('mongoose');
 
@@ -62,12 +63,20 @@ exports.calcTestResult = (req, res, next) => {
                 }
             }
             const grade = (trueGrades.length * 100) / p.quizs.length;
-            console.log(grade);
-            console.log(`معدل سرعة القراءة ${average} في الدقيقة`);
             const result = {
                 read: average,
                 understand: grade
             };
+            User.findById(req.session.user._id)
+                .then(user => {
+                    const newTest = {
+                        name: p.title,
+                        grade: result.understand,
+                        speed: result.read
+                    };
+                    user.test.push(newTest);
+                    user.save();
+                })
             res.render('main/read-app-result', {
                 result: result
             })

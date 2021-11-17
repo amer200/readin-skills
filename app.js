@@ -13,7 +13,13 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
-
+app.use( (req, res, next)=>{
+    const user = req. session.user;
+    res.locals = {
+        user: user
+    }
+    next();
+})
 // config body parser
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
