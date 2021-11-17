@@ -35,13 +35,7 @@ var options = {
     }
 };
 
-function imageHandler() {
-    var range = this.quill.getSelection();
-    var value = prompt('ادخل رابط الصورة');
-    if (value) {
-        this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
-    }
-}
+
 
 
 // The quill instance
