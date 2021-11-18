@@ -26,7 +26,7 @@
       </a>
     </li>
     <li>
-      <a href="#read-app" class="nav-link text-white">
+      <a href="/admin/read-app" class="nav-link text-white">
         <svg class="bi me-2" width="16" height="16">
           <use xlink:href="#table" /></svg>
         تطبيق القراءة السريعة و الفهم القرائي
@@ -42,15 +42,27 @@
   </ul>
 </div>
 
-<form class="myForm" id="myForm" method="post">
+<form class="myForm" id="myFormBrief" method="post">
   <div class="mb-3">
-    <label class="form-label" id="Lab"></label>
+    <label class="form-label" id="Lab">السيرة الذاتية</label>
     <!-- Create the editor container -->
     <div id="editor">
+      <%- data.brief %>
     </div>
     <input type="hidden" name="content" id="content">
   </div>
-  <button type="button" id="subBtn" class="btn btn-dark">حفظ</button>
+  <button type="button" id="subBtnBrief" class="btn btn-dark">حفظ</button>
+</form>
+<form class="myForm" id="myFormAbout" method="post" style="display: none;">
+  <div class="mb-3">
+    <label class="form-label" id="Lab">عن بيئة التعلم</label>
+    <!-- Create the editor container -->
+    <div id="editor">
+      <%- data.about %>
+    </div>
+    <input type="hidden" name="content" id="content">
+  </div>
+  <button type="button" id="subBtnAbout" class="btn btn-dark">حفظ</button>
 </form>
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js"></script>

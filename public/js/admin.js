@@ -1,19 +1,25 @@
-const myForm = document.getElementById('myForm');
-const subBtn = document.getElementById('subBtn');
-const Lab = document.getElementById('Lab');
+const myFormBrief = document.getElementById('myFormBrief');
+const subBtnBrief = document.getElementById('subBtnBrief');
+const myFormAbout = document.getElementById('myFormAbout');
+const subBtnAbout = document.getElementById('subBtnAbout');
 const brief = document.getElementById('brief');
 const content = document.getElementById('content');
 const about = document.getElementById('about');
-about.addEventListener('click', () => {
-    myForm.action = '/admin/about';
-    Lab.innerHTML = 'عن بيئة التعلم';
-});
+const editor = document.getElementById('editor');
+
 brief.addEventListener('click', () => {
-    myForm.action = '/admin/brief';
-    Lab.innerHTML = 'السيرة الذاتية';
+    myFormBrief.action = '/admin/brief';
+    myFormBrief.style.display = 'block';
+    myFormAbout.style.display = 'none';
 });
 
-subBtn.addEventListener('click', () => {
+subBtnBrief.addEventListener('click', () => {
     content.value = quill.root.innerHTML;
-    myForm.submit();
-})
+    myFormBrief.submit();
+});
+
+about.addEventListener('click', () => {
+    myFormAbout.action = '/admin/about';
+    myFormBrief.style.display = 'none';
+    myFormAbout.style.display = 'block';
+});

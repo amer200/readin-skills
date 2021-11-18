@@ -8,7 +8,7 @@ exports.getIndex = (req, res, next) => {
     MainPage.findOne()
         .then(result => {
             res.render('admin/index', {
-                MainPageData: result
+                data: result
             })
         })
         .catch(err => {
@@ -48,9 +48,9 @@ exports.about = (req, res, next) => {
 
 exports.getReadApp = (req, res, next) => {
     Paragraph.find()
-        .then(prags => {
+        .then(p => {
             res.render('admin/read-app', {
-                prags: prags
+                p: p
             });
         })
         .catch(err => {
@@ -61,11 +61,10 @@ exports.postAddParagraph = (req, res, next) => {
     const title = req.body.title;
     const content = req.body.content;
     const wordcount = req.body.wordCount;
-    const quizs = req.body.quiz;
-    const rightAnswers = req.body.rightAnswer;
-    const wronganswerone = req.body.wrongAnswerone;
-    const wronganswertwo = req.body.wrongAnswertwo;
-
+    const quizs = req.body.qu;
+    const rightAnswers = req.body.rA;
+    const wronganswerone = req.body.wAo;
+    const wronganswertwo = req.body.wAt;
     if (typeof quizs == 'string') {
         const quiz = {
             quiz: quizs,
@@ -140,10 +139,10 @@ exports.postEditParagraph = (req, res, next) => {
     const title = req.body.title;
     const content = req.body.content;
     const wordcount = req.body.wordCount;
-    const quizs = req.body.quiz;
-    const rightAnswers = req.body.rightAnswer;
-    const wronganswerone = req.body.wrongAnswerone;
-    const wronganswertwo = req.body.wrongAnswertwo;
+    const quizs = req.body.qu;
+    const rightAnswers = req.body.rA;
+    const wronganswerone = req.body.wAo;
+    const wronganswertwo = req.body.wAt;
     Paragraph.findOne({
             _id: pId
         })

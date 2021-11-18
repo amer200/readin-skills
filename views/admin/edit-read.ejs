@@ -1,53 +1,44 @@
 <%- include('../lay-outs/head') %>
-<!-- Include Quill stylesheet -->
-<link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
-<link rel="stylesheet" href="/css/admin.css" />
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="text-align: center; background-color: #888 !important;">
-    <h3 style="color: #fff; margin-left: auto;
-    margin-right: auto;"><%= p.title %> admin area / Edit</h3>
-</nav>
-<div class="container">
-    <div class="row">
-        <div class="addnew col-lg-12">
-            <form action="/admin/edit-paragraph/<%= p._id %>" method="post" id="addForm">
-                <div class="mb-3">
-                    <label for="about" class="form-label">العنوان</label>
-                    <input type="text" class="form-control" name="title" value="<%= p.title %>">
-                </div>
-                <div class="mb-3">
-                    <label for="about" class="form-label">المحتوى</label>
-                    <textarea class="form-control" id="hiddenContent" name="content"
-                        style="width: 100%; height: 100%; display: none;"></textarea>
-                    <input type="hidden" name="wordCount">
-                    <div id="editor" dir="rtl"><%- p.contentHtml %></div>
-                    <div id="counter">0 words</div>
-                </div>
-                <% p.quizs.forEach(q => { %>
-                <div class="quiz" id="quiz">
-                    <h3>quiz</h3>
-                    <div class="mb-3">
-                        <label for="about" class="form-label">السوؤال</label>
-                        <input type="text" class="form-control" name="quiz" placeholder="السوؤال" value="<%= q.quiz%>"
-                            required>
-                        <input type="text" class="form-control" name="rightAnswer" placeholder="الاجابة الصحيحة"
-                            value="<%= q.rightanswer%>" required>
-                        <input type="text" class="form-control" name="wrongAnswerone" placeholder="اجابة خاطئة"
-                            value="<%=q.wrongAnswerone%>" required>
-                        <input type="text" class="form-control" name="wrongAnswertwo" placeholder="اجابة خاطئة"
-                            value="<%=q.wrongAnswertwo%>" required>
-                        <div class="break"></div>
+<%- include('../lay-outs/nav') %>
+<!-- quill css -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/edit-read-app.css">
+<div class="container main">
+    <form class="myForm" id="myForm" action="/admin/edit-paragraph/<%= p._id%>" method="post">
+        <div class="container">
+            <h4>تعديل درس:<%=p.title%></h4>
+            <div class="row">
+                <div class="mb-3 col-lg-6">
+                    <label class="form-label" id="Lab">محتوى الدرس</label>
+                    <input type="text" class="form-control" name="title" value="<%=p.title%>" required>
+                    <br>
+                    <!-- Create the editor container -->
+                    <div id="editor">
+                        <%-p.content%>
                     </div>
+                    <input type="hidden" name="wordCount" id="wordCount">
+                    <input type="hidden" name="content" id="content">
                 </div>
-                <%})%>
-                <button type="button" id="addQuiz" class="btn btn-primary"> اضف سوؤال</button>
-                <button type="button" id="submitBtn" class="btn btn-dark">submit</button>
-                <div class="break"></div>
-
-            </form>
+                <div class="mb-3 col-lg-6 quizs" id="quizs">
+                    <label class="form-label" id="Lab">اسئلة الدرس</label>
+                    <% p.quizs.forEach( q=>{ %>
+                    <div class="quiz">
+                        <input type="text" class="form-control" name="qu" value="<%= q.quiz%>" required>
+                        <input type="text" class="form-control" name="rA" value="<%=  q.rightanswer%>" required>
+                        <input type="text" class="form-control" name="wAo" value="<%= q.wrongAnswerone %>" required>
+                        <input type="text" class="form-control" name="wAt" value="<%= q.wrongAnswertwo %>" required>
+                        <button type="button" id="removeQuiz" class="btn btn-danger" onclick="this.parentElement.remove()">احذف السؤال</button>
+                    </div>
+                    <%})%>
+                </div>
+                <button type="button" id="addQuiz" class="btn btn-dark">اضف سؤال اخر</button>
+            </div>
         </div>
-    </div>
+        <button type="button" id="subBtn" class="btn btn-dark">حفظ</button>
+    </form>
 </div>
-</div>
-<script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js"></script>
+<script src="/js/qull-config.js"></script>
 <script src="/js/admin-edit-read-app.js"></script>
 <%- include('../lay-outs/footer') %>
