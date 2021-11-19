@@ -7,6 +7,7 @@ router.get('/brief', mainControllers.getBrief);
 router.get('/about', mainControllers.getAbout);
 // read app
 router.get('/read-app', mainControllers.getReadApp);
+router.get('/tes-read/:pId', mainControllers.getTestRead);
 router.post('/test-result', mainControllers.calcTestResult);
 router.get('/test-result', mainControllers.getTestResult);
 // light speed

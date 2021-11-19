@@ -3,18 +3,26 @@ const subBtnBrief = document.getElementById('subBtnBrief');
 const myFormAbout = document.getElementById('myFormAbout');
 const subBtnAbout = document.getElementById('subBtnAbout');
 const brief = document.getElementById('brief');
-const content = document.getElementById('content');
+const briefContent = document.getElementById('briefcontent');
+const aboutContent = document.getElementById('aboutcontent');
 const about = document.getElementById('about');
 const editor = document.getElementById('editor');
-
+const blogBtn = document.getElementById('mix');
+const blogList = document.getElementById('blogs');
+const removeBlogBtn = document.getElementById('removeBlogBtn');
+const removeBlogForm = document.getElementById('removeBlogForm');
+const addBlog = document.getElementById('addBlog');
+const blogForm = document.getElementById('blogForm');
 brief.addEventListener('click', () => {
     myFormBrief.action = '/admin/brief';
     myFormBrief.style.display = 'block';
     myFormAbout.style.display = 'none';
+    blogList.style.display = 'none';
+    blogForm.style.display = 'none';
 });
 
 subBtnBrief.addEventListener('click', () => {
-    content.value = quill.root.innerHTML;
+    briefContent.value = quill.root.innerHTML;
     myFormBrief.submit();
 });
 
@@ -22,4 +30,28 @@ about.addEventListener('click', () => {
     myFormAbout.action = '/admin/about';
     myFormBrief.style.display = 'none';
     myFormAbout.style.display = 'block';
+    blogList.style.display = 'none';
+    blogForm.style.display = 'none';
+
 });
+subBtnAbout.addEventListener('click', () => {
+    aboutContent.value = quill2.root.innerHTML;
+    myFormAbout.submit();
+});
+blogBtn.addEventListener('click', ()=>{
+    blogList.style.display = 'block';
+    myFormBrief.style.display = 'none';
+    myFormAbout.style.display = 'none';
+    blogForm.style.display = 'none';
+})
+removeBlogBtn.addEventListener('click', ()=>{
+    if(confirm('سوف يتم حذف المقالة نهائيا هل انت متأكد ؟')){
+        removeBlogForm.submit()
+    }
+})
+addBlog.addEventListener('click', ()=>{
+    blogForm.style.display = 'block';
+    blogList.style.display = 'none';
+    myFormBrief.style.display = 'none';
+    myFormAbout.style.display = 'none';
+})

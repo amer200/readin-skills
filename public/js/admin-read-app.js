@@ -22,7 +22,7 @@ const wAo = document.getElementsByName('wAo');
 const wAt = document.getElementsByName('wAt');
 const content = document.getElementById('content');
 const wordCount = document.getElementById('wordCount');
-
+const add = document.getElementById('add');
 subBtn.addEventListener('click', () => {
     content.value = quill.root.innerHTML;
     wordCount.value = quill.getText().split(/\s+/).length - 1;
@@ -37,7 +37,10 @@ showL.addEventListener('click', ()=>{
     myForm.style.display = 'none';
     les.style.display = 'block';
 })
-
+add.addEventListener('click', ()=>{
+    myForm.style.display = 'block';
+    les.style.display = 'none';
+})
 // remove lesson
 const removeForm = document.getElementById('removeForm');
 const removeBtn = document.getElementById('removeBtn');

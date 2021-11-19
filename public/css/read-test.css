@@ -1,0 +1,33 @@
+header {
+    height: 200px;
+    background-color: #306BC6;
+    margin-bottom: 50px;
+    text-align: center;
+    color: #fff;
+}
+
+header h1 {
+    position: relative;
+    top: 95px;
+}
+
+.list-group-item img {
+    width: 100%;
+}
+
+.list-group-item button {
+    width: 50%;
+    height: 40px;
+    border: none;
+    border-radius: 30px;
+    position: relative;
+    right: 26%;
+}
+
+.prag {
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    border-radius: 10px;
+    height: 465px;
+    overflow-y: scroll;
+    color: rgba(0, 0, 0, 0);
+}

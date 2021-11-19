@@ -1,28 +1,49 @@
 <%- include('../lay-outs/head') %>
 <%- include('../lay-outs/nav') %>
-<link rel="stylesheet" href="/css/read-app-test.css">
+<% if(user){%>
+<link rel="stylesheet" href="/css/read-test.css">
 <header>
     <div class="container">
-        <h1>ختبار سرعة القراءة</h1>
+        <h1>اختبار سرعة القراءة</h1>
     </div>
 </header>
-<div class="ciontainer">
+<div class="container">
     <div class="row">
         <div class="prag col-lg-8">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum minus modi magni pariatur ullam alias
-            nesciunt, earum voluptates nemo nisi incidunt possimus repellendus laudantium fugit maxime excepturi. Animi,
-            suscipit ab!
+            <%- p.content%>
         </div>
         <div class="col-lg-4">
             <ul class="list-group">
-                <li class="list-group-item" id="name">سم الطالب:</li>
+                <li class="list-group-item" id="name">اسم الطالب:<%= user.name%></li>
                 <li class="list-group-item" id="timer">عداد الزمن:</li>
-                <li class="list-group-item" id="stop-reading">توقف عن القراءة</li>
-                <li class="list-group-item" id="end-reading">انهاء القراءة</li>
-                <li class="list-group-item" id="save-speed">حفظ سرعتي</li>
+                <li class="list-group-item" id="stop-reading"><button type="button" class="btn btn-dark"
+                        style="background-color: #EE7604">ابداء
+                        القراءة</button></li>
+                <li class="list-group-item" id="stop-reading"><button type="button" class="btn btn-dark"
+                        style="background-color: #6C655F">توقف عن
+                        القراءة</button></li>
+                <li class="list-group-item" id="end-reading"><button type="button" class="btn btn-dark"
+                        style="background-color: #264BE6">انهاء
+                        القراءة</button></li>
+                <li class="list-group-item" id="save-speed"><button type="button" class="btn btn-dark"
+                        style="background-color: #E63D0D">حفظ
+                        سرعتي</button></li>
                 <li class="list-group-item" id="img"><img src="/img/pic4.png" alt=""></li>
-              </ul>
+            </ul>
         </div>
     </div>
 </div>
+<!-- hidden elements -->
+
+<script src="/js/read-app.js"></script>
+<%}else{%>
+<script>
+    if (confirm('يجب عليك تسجيل الدخول قبل اداء الاختبار')) {
+        window.location.href = 'http://localhost:3000/auth'
+    } else {
+        window.location.href = 'http://localhost:3000/'
+    }
+</script>
+<%}%>
+
 <%- include('../lay-outs/footer') %>

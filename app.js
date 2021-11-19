@@ -20,6 +20,10 @@ app.use( (req, res, next)=>{
     }
     next();
 })
+app.use('/logout', (req, res, next) => {
+    req.session.destroy()
+    res.redirect('/');
+})
 // config body parser
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({

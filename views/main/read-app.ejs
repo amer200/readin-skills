@@ -14,7 +14,7 @@
                 <li class="list-group-item">Cras justo odio</li>
                 <li class="list-group-item">Cras justo odio</li>
                 <li class="list-group-item">Cras justo odio</li>
-              </ol>
+            </ol>
         </div>
     </div>
     <div class="row" style="margin-top: 20px;">
@@ -22,15 +22,16 @@
             <div class="menu">
                 <h1>اختيار القطعة:</h1>
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                      القطعة
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        القطعة
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="dropdown-item" href="#"></a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <% t.forEach( t=>{%>
+                        <li><a class="dropdown-item" href="/tes-read/<%=t._id%>"><%= t.title%></a></li>
+                        <%})%>
                     </ul>
-                  </div>
+                </div>
             </div>
         </div>
         <img class="col-6 read-img" src="/img/header.png" alt="">

@@ -9,56 +9,76 @@ exports.getIndex = (req, res, next) => {
 }
 exports.getBrief = (req, res, next) => {
     MainPage.findOne()
-            .then(p=>{
-                res.render('main/brief',{
-                    b: p.brief
-                })
+        .then(p => {
+            res.render('main/brief', {
+                b: p.brief
             })
+        })
 }
 exports.getAbout = (req, res, next) => {
     MainPage.findOne()
-    .then(p=>{
-        res.render('main/about',{
-            b: p.about
+        .then(p => {
+            res.render('main/about', {
+                b: p.about
+            })
         })
-    })
 }
 exports.getReadApp = (req, res, next) => {
-    function shuffle(array) {
-        return array.sort(() => Math.random() - 0.5);
-    }
-    Paragraph.findOne()
-        .then(p => {
-            const allAnswers = [];
-            const ques = [];
-            if (p) {
-                p.quizs.forEach(q => {
-                    const answer = [q.rightanswer, q.wrongAnswerone, q.wrongAnswertwo];
-                    allAnswers.push(shuffle(answer));
-                })
-                p.quizs.forEach(q => {
-                    ques.push(q.quiz)
-                })
-                const data = {
-                    title: p.title,
-                    content: p.content,
-                    wordCount: p.wordcount,
-                    ques: ques, // array
-                    answers: allAnswers // array
-                }
-                res.render('main/read-app', {
-                    data: data
-                })
-            } else {
-                res.render('main/read-app', {
-                    data: null
-                })
-            }
+    Paragraph.find({}, 'title')
+        .then(t => {
+            res.render('main/read-app', {
+                t: t
+            })
         })
         .catch(err => {
-            console.log(err);
+            console.log(err)
         })
 }
+exports.getTestRead = (req, res, next) => {
+    const pId = req.params.pId;
+    Paragraph.findById(pId)
+        .then(p => {
+            res.render('main/read-app-test', {
+                p: p
+            })
+        })
+}
+// exports.getReadApp = (req, res, next) => {
+//     function shuffle(array) {
+//         return array.sort(() => Math.random() - 0.5);
+//     }
+//     Paragraph.findOne()
+//         .then(p => {
+//             const allAnswers = [];
+//             const ques = [];
+//             if (p) {
+//                 p.quizs.forEach(q => {
+//                     const answer = [q.rightanswer, q.wrongAnswerone, q.wrongAnswertwo];
+//                     allAnswers.push(shuffle(answer));
+//                 })
+//                 p.quizs.forEach(q => {
+//                     ques.push(q.quiz)
+//                 })
+//                 const data = {
+//                     title: p.title,
+//                     content: p.content,
+//                     wordCount: p.wordcount,
+//                     ques: ques, // array
+//                     answers: allAnswers // array
+//                 }
+//                 res.render('main/read-app', {
+//                     data: data
+//                 })
+//             } else {
+//                 res.render('main/read-app', {
+//                     data: null
+//                 })
+//             }
+//         })
+//         .catch(err => {
+//             console.log(err);
+//         })
+// }
 exports.calcTestResult = (req, res, next) => {
     const average = req.body.average;
     Paragraph.findOne()

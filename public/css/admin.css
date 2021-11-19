@@ -14,8 +14,23 @@
     right: 34%;
 }
 
-#editor {
+#editor,
+#editor2,
+#editorBlog {
     position: relative;
-    height: 143px;
+    height: 405px;
     overflow-y: scroll;
+}
+#editorBlog{
+    height: 220px;
+}
+.blogs {
+    width: 80%;
+    position: absolute;
+    top: 120px;
+    right: 19%;
+    display: block;
+}
+.side-bar{
+    height: 560px;
 }
