@@ -6,10 +6,21 @@ const mongoose = require('mongoose');
 
 exports.getIndex = (req, res, next) => {
     MainPage.findOne()
-        .then(result => {
-            res.render('admin/index', {
-                data: result
-            })
+        .then(p => {
+            return p
+        })
+        .then(p => {
+            Blog.find()
+                .then(blogs => {
+                    const data = {
+                        brief: p.brief,
+                        about: p.about,
+                        blogs: blogs
+                    }
+                    res.render('admin/index', {
+                        data: data
+                    })
+                })
         })
         .catch(err => {
             console.log(err)
@@ -18,30 +29,30 @@ exports.getIndex = (req, res, next) => {
 exports.brief = (req, res, next) => {
     const content = req.body.content;
     MainPage.findOne()
-            .then( p => {
-                p.brief = content;
-                return p.save()
-            })
-            .then(result => {
-                res.redirect('/admin')
-            })
-            .catch( err => {
-                console.log(err)
-            })
+        .then(p => {
+            p.brief = content;
+            return p.save()
+        })
+        .then(result => {
+            res.redirect('/admin')
+        })
+        .catch(err => {
+            console.log(err)
+        })
 }
 exports.about = (req, res, next) => {
     const content = req.body.content;
     MainPage.findOne()
-            .then( p => {
-                p.about = content;
-                return p.save()
-            })
-            .then(result => {
-                res.redirect('/admin')
-            })
-            .catch( err => {
-                console.log(err)
-            })
+        .then(p => {
+            p.about = content;
+            return p.save()
+        })
+        .then(result => {
+            res.redirect('/admin')
+        })
+        .catch(err => {
+            console.log(err)
+        })
 }
 
 // read app
@@ -181,17 +192,17 @@ exports.postEditParagraph = (req, res, next) => {
         })
 }
 // mix 
-exports.getMix = (req, res, next) => {
-    Blog.find()
-        .then(blogs => {
-            res.render('admin/mix',{
-                blogs: blogs
-            })
-        })
-        .catch(err => {
-            console.log(err)
-        })
-}
+// exports.getMix = (req, res, next) => {
+//     Blog.find()
+//         .then(blogs => {
+//             res.render('admin/mix', {
+//                 blogs: blogs
+//             })
+//         })
+//         .catch(err => {
+//             console.log(err)
+//         })
+// }
 exports.postAddMix = (req, res, next) => {
     const title = req.body.title;
     const content = req.body.content;
@@ -214,12 +225,12 @@ exports.postAddMix = (req, res, next) => {
 exports.getEditPost = (req, res, next) => {
     const postId = req.params.postId;
     Blog.findById(postId)
-        .then( post => {
+        .then(post => {
             res.render('admin/edit-post', {
                 post: post
             })
         })
-        .catch( err => {
+        .catch(err => {
             console.log(err);
         })
 }
@@ -230,25 +241,25 @@ exports.postEditPost = (req, res, next) => {
     const textContent = req.body.textContent;
     const img = req.body.img;
     Blog.findById(postId)
-        .then( post => {
+        .then(post => {
             post.title = title;
             post.content = content;
             post.text = textContent;
             post.img = img;
             return post.save();
         })
-        .then( result => {
-            res.redirect('/admin/mix');
+        .then(result => {
+            res.redirect('/admin');
         })
-        .catch( err => {
+        .catch(err => {
             console.log(err);
         })
 }
-exports.deletePost = (req, res, next) =>{
+exports.deletePost = (req, res, next) => {
     const postId = req.params.postId;
     Blog.findByIdAndRemove(postId)
-        .then( result => {
-            res.redirect('/admin/mix');
+        .then(result => {
+            res.redirect('/admin');
         })
         .catch(err => {
             console.log(err)
