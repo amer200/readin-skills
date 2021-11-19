@@ -119,7 +119,15 @@ exports.getTestResult = (req, res, next) => {
 }
 // light speed
 exports.lightSpeed = (req, res, next) => {
-    res.render('main/light-speed');
+    Paragraph.find()
+    .then(t => {
+        res.render('main/light-speed', {
+            t: t
+        })
+    })
+    .catch(err => {
+        console.log(err)
+    })
 }
 // mix 
 exports.getMix = (req, res, next) => {

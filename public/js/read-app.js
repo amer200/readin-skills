@@ -1,23 +1,27 @@
-// const modalBtn = document.getElementById('modalBtn');
-// const endBtn = document.getElementById('endApp');
-// const modal = document.getElementById('modal');
-// const page = document.getElementById('page');
-// const timerBox = document.getElementById('timer');
-// const wordsNum = document.getElementById('wordsCount').value;
-// let average;
-// modalBtn.addEventListener('click', () => {
-//     var start = Date.now();
-//     modal.classList = 'd-none';
-//     page.classList = 'page';
-//     var timer = setInterval(function() {
-//         var delta = Date.now() - start;
-//         timerBox.innerHTML = Math.floor(delta / 1000);
-//     }, 1000);
-// })
-// endBtn.addEventListener('click', () => {
-//     const time = timer.textContent;
-//     const timeInminute = time / 60;
-//     average = (wordsNum * 1) / timeInminute;
-//     const averageInput = document.getElementById('average');
-//     return averageInput.value = Math.round(average);
-// })
+const timer = document.getElementById('timer');
+const start = document.getElementById('start');
+const stop = document.getElementById('stop');
+let t;
+// timer function
+function timerFun(startTime) {
+    t = setInterval(() => {
+        var delta = Math.floor(Date.now()) - Math.floor(startTime);
+        timer.innerHTML = `عداد الزمن: ${Math.floor(delta / 1000)}`;
+    }, 1000);
+}
+start.addEventListener('click', () => {
+    if (timer.textContent.split(' ')[2]) {
+        t = setInterval(() => {
+            var startTime = timer.textContent.split(' ')[2];
+            timer.innerHTML = `عداد الزمن: ${+startTime + 1}`;
+        }, 1000);
+    }else{
+        timerFun(Date.now());
+    }
+    start.disabled = true
+});
+stop.addEventListener('click', () => {
+    console.log();
+    clearInterval(t);
+    start.disabled = false
+})

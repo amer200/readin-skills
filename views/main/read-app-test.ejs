@@ -1,7 +1,7 @@
 <%- include('../lay-outs/head') %>
 <%- include('../lay-outs/nav') %>
 <% if(user){%>
-<link rel="stylesheet" href="/css/read-test.css">
+<link rel="stylesheet" href="/css/main/read-test.css">
 <header>
     <div class="container">
         <h1>اختبار سرعة القراءة</h1>
@@ -16,10 +16,10 @@
             <ul class="list-group">
                 <li class="list-group-item" id="name">اسم الطالب:<%= user.name%></li>
                 <li class="list-group-item" id="timer">عداد الزمن:</li>
-                <li class="list-group-item" id="stop-reading"><button type="button" class="btn btn-dark"
+                <li class="list-group-item" id="stop-reading"><button type="button" id="start" class="btn btn-dark"
                         style="background-color: #EE7604">ابداء
                         القراءة</button></li>
-                <li class="list-group-item" id="stop-reading"><button type="button" class="btn btn-dark"
+                <li class="list-group-item" id="stop-reading"><button type="button" id="stop" class="btn btn-dark"
                         style="background-color: #6C655F">توقف عن
                         القراءة</button></li>
                 <li class="list-group-item" id="end-reading"><button type="button" class="btn btn-dark"

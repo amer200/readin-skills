@@ -1,25 +1,44 @@
 <%- include('../lay-outs/head') %>
 <%- include('../lay-outs/nav') %>
-<link rel="stylesheet" href="https://cdn.quilljs.com/1.0.0/quill.snow.css">
-<link rel="stylesheet" href="/css/light-speed.css">
-<div class="main">
+<link rel="stylesheet" href="/css/main/light-read.css">
+<header>
     <div class="container">
-        <div class="row">
-            <div class="prag col-lg-12" id="prag">
-                <h6 style="font-size: 2rem;
-                color: #60da5b;">ادخل النص</h6>
-                <div id="editor"></div>
-                <div class="break"></div>
-                <input type="number" id='sec' class="form-control" placeholder="حدد وقت ظهور الكلمة بالثواني">
-                <button type="button" class="btn btn-dark" id="pragBtn"> ابداء</button>
-            </div>
-            <div class="test col-lg-12" id="test" style="display: none;">
-                <div class="words" id="words">عامر</div>
-                <button type="button" class="btn btn-dark" id="repeat">اعادة</button>
-            </div>
+        <h1>تطبيق القراءة السريعة</h1>
+        <h4>لتنمية مهارتي القراءة السريعة و الفهم القرائي</h4>
+    </div>
+</header>
+<div class="container-fluid">
+    <div class="row">
+        <div class="str col-12">
+            <!-- <div class="tex">لحساب سرعة القراءة الخاصة بك عليك اتباع التعليمات التالية:</div> -->
+            <li class="list-group-item tex" value="5">لحساب سرعة القراءة الخاصة بك عليك اتباع التعليمات التالية:</li>
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Cras justo odio</li>
+            </ol>
         </div>
     </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="choose col-lg-6">
+            <div class="menu">
+                <h1>اختيار القطعة:</h1>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        القطعة
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <% t.forEach( t=>{%>
+                        <li><a class="dropdown-item" href="/tes-read/<%=t._id%>"><%= t.title%></a></li>
+                        <%})%>
+                    </ul>
+                </div>
+                <input type="number" class="form-control" id='wNum' placeholder="عدد الكلمات">
+                <button type="button" class="btn btn-primary" id="start">بدء التدريب</button>
+            </div>
+        </div>
+        <img class="col-6 read-img" src="/img/header.png" alt="">
+    </div>
 </div>
-<script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
-<script src="/js/light-speed.js"></script>
+<%- include('../lay-outs/icon-bar') %>
 <%- include('../lay-outs/footer') %>

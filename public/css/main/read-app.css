@@ -1,0 +1,39 @@
+header {
+    height: 200px;
+    background-color: #306BC6;
+    margin-bottom: 50px;
+    text-align: center;
+    color: #fff;
+}
+
+header h1 {
+    position: relative;
+    top: 55px;
+}
+
+header h4 {
+    position: relative;
+    top: 60px;
+}
+
+.str .list-group-numbered {
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.str .tex {
+    background-color: #E48823;
+    line-height: 2;
+    color: #fff;
+    width: 96.8%;
+    margin-right: 3.2%;
+}
+
+.dropdown {
+    top: -50px;
+    right: 235px;
+    width: 10px;
+}
+.menu{
+    margin-top: 20%;
+}
