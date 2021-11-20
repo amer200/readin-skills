@@ -9,8 +9,8 @@
 </header>
 <div class="container">
     <div class="row">
-        <div class="prag col-lg-8">
-            <%- p.content%>
+        <div class="prag col-lg-8" id="prag">
+            <%- data.content%>
         </div>
         <div class="col-lg-4">
             <ul class="list-group">
@@ -22,28 +22,75 @@
                 <li class="list-group-item" id="stop-reading"><button type="button" id="stop" class="btn btn-dark"
                         style="background-color: #6C655F">توقف عن
                         القراءة</button></li>
-                <li class="list-group-item" id="end-reading"><button type="button" class="btn btn-dark"
-                        style="background-color: #264BE6">انهاء
-                        القراءة</button></li>
+                <li class="list-group-item" id="end-reading"><button type="button" class="btn btn-dark" style="background-color: #264BE6;     width: 75%;
+                        right: 14%;" data-bs-toggle="modal" data-bs-target="#exampleModal" id="end">انهاء القراءة و بدء
+                        الاختبار</button></li>
                 <li class="list-group-item" id="save-speed"><button type="button" class="btn btn-dark"
-                        style="background-color: #E63D0D">حفظ
-                        سرعتي</button></li>
+                        style="background-color: #E63D0D; display: none;">حفظ
+                        سرعتي</button></li> 
                 <li class="list-group-item" id="img"><img src="/img/pic4.png" alt=""></li>
             </ul>
         </div>
     </div>
 </div>
 <!-- hidden elements -->
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">اختبار درجة الفهم لدرس: <%=data.title%></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    style="margin-left: 0;"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/test-result/<%= data.id %>" method="post" id="testForm">
+                    <% let counter = 0; %>
+                    <% for(let i=0; i < data.ques.length; i++){%>
+                    <div class="quiz">
+                        <h6><%= data.ques[i]%></h6>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="<%= data.ques[i]%>"
+                                id="flexRadioDisabled" value="<%= data.answers[i][0] %>">
+                            <label class="form-check-label" for="flexRadioDisabled">
+                                <%= data.answers[i][0] %>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="<%= data.ques[i]%>"
+                                id="flexRadioCheckedDisabled" value="<%= data.answers[i][1] %>">
+                            <label class="form-check-label" for="flexRadioCheckedDisabled">
+                                <%= data.answers[i][1] %>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="<%= data.ques[i]%>" id="3" value="<%= data.answers[i][2] %>" checked>
+                            <label class="form-check-label" for="3">
+                                <%= data.answers[i][2] %>
+                            </label>
+                        </div>
+                        <% counter++%>
+                    </div>
+                    <%}%>
+                    <input type="hidden" id="wordcount" name="wordcount" value="<%= data.wordcount%>">
+                    <input type="hidden" id="speed" name="speed">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="testSubmit">انهاء الاختبار</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="/js/read-app.js"></script>
 <%}else{%>
-<script>
-    if (confirm('يجب عليك تسجيل الدخول قبل اداء الاختبار')) {
-        window.location.href = 'http://localhost:3000/auth'
-    } else {
-        window.location.href = 'http://localhost:3000/'
-    }
-</script>
-<%}%>
+                    <script>
+                        if (confirm('يجب عليك تسجيل الدخول قبل اداء الاختبار')) {
+                            window.location.href = 'http://localhost:3000/auth'
+                        } else {
+                            window.location.href = 'http://localhost:3000/'
+                        }
+                    </script>
+                    <%}%>
 
 <%- include('../lay-outs/footer') %>

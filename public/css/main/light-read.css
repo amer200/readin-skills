@@ -16,6 +16,10 @@ header h4 {
     top: 60px;
 }
 
+.main {
+    display: none;
+}
+
 .str .list-group-numbered {
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
@@ -48,4 +52,18 @@ header h4 {
     position: relative;
     right: 65%;
     top: -36px;
+}
+
+/*****************/
+.test {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.word {
+    background-color: #ddd;
+    font-size: 2.5rem;
+    padding: 55px;
+    border-radius: 30px;
 }

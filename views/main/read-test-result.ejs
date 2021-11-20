@@ -1,0 +1,26 @@
+<%- include('../lay-outs/head') %>
+<%- include('../lay-outs/nav') %>
+<link rel="stylesheet" href="/css/main/read-test-result.css">
+<header>
+    <div class="container">
+        <h1>نتيجة سرعة القراءة و الاستيعاب</h1>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="box col-lg-4">
+            <h3>مستوى ضعيف</h3>
+            <div class="grades">
+                <span class="s-speed"><%=speed%></span><p class="speed">كلمة في الدقيقة</p>
+                <span class="s-un"><%=grade%>%</span><p class="un">درجة الفهم</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <p class="lead myText">متوسط سرعة القراءة العادية هو ما يقرب من 150 كلمة في الدقيقة الواحدة و باتقان مهارات القراءة
+            السريعة يستطيع الطالب أن يقراأ ما بين 350 كلمة الى 500 كلمة في الدقيقة</p>
+    </div>
+</div>
+<%- include('../lay-outs/footer') %>

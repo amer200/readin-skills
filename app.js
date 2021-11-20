@@ -44,6 +44,9 @@ const authRoutes = require('./routes/auth');
 app.use(authRoutes);
 app.use('/admin', adminRoutes);
 app.use('/', mainRoutes);
+app.use('/test-result/619660c6443fe7b1076f6b94', (req, res, next)=>{
+    res.render('main/read-test-result');
+})
 app.listen(port, () => {
     console.log(`Elearning app listening at http://localhost:${port}`);
     mongoose.connect('mongodb+srv://drhasan:753698@cluster0.utxxi.mongodb.net/speedreading')

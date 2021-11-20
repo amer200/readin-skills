@@ -36,52 +36,41 @@ exports.getReadApp = (req, res, next) => {
 }
 exports.getTestRead = (req, res, next) => {
     const pId = req.params.pId;
+
+    function shuffle(array) {
+        return array.sort(() => Math.random() - 0.5);
+    }
     Paragraph.findById(pId)
         .then(p => {
+            const ques = [];
+            const allAnswers = [];
+            p.quizs.forEach(q => {
+                ques.push(q.quiz);
+                const answers = [q.rightanswer, q.wrongAnswerone, q.wrongAnswertwo];
+                allAnswers.push(shuffle(answers));
+            })
+            const data = {
+                id: p._id,
+                title: p.title,
+                content: p.content,
+                wordcount: p.wordcount,
+                ques: ques,
+                answers: allAnswers
+            }
             res.render('main/read-app-test', {
-                p: p
+                data: data
             })
         })
+        .catch(err => {
+            console.log(err);
+        })
 }
-// exports.getReadApp = (req, res, next) => {
-//     function shuffle(array) {
-//         return array.sort(() => Math.random() - 0.5);
-//     }
-//     Paragraph.findOne()
-//         .then(p => {
-//             const allAnswers = [];
-//             const ques = [];
-//             if (p) {
-//                 p.quizs.forEach(q => {
-//                     const answer = [q.rightanswer, q.wrongAnswerone, q.wrongAnswertwo];
-//                     allAnswers.push(shuffle(answer));
-//                 })
-//                 p.quizs.forEach(q => {
-//                     ques.push(q.quiz)
-//                 })
-//                 const data = {
-//                     title: p.title,
-//                     content: p.content,
-//                     wordCount: p.wordcount,
-//                     ques: ques, // array
-//                     answers: allAnswers // array
-//                 }
-//                 res.render('main/read-app', {
-//                     data: data
-//                 })
-//             } else {
-//                 res.render('main/read-app', {
-//                     data: null
-//                 })
-//             }
-//         })
-//         .catch(err => {
-//             console.log(err);
-//         })
-// }
 exports.calcTestResult = (req, res, next) => {
-    const average = req.body.average;
-    Paragraph.findOne()
+    const speed = req.body.speed;
+    const lessonId = req.params.lessonId;
+    const userId = req.session.user._id;
+    // calc grade 
+    Paragraph.findById(lessonId)
         .then(p => {
             const trueGrades = [];
             for (let i = 0; i < p.quizs.length; i++) {
@@ -90,28 +79,27 @@ exports.calcTestResult = (req, res, next) => {
                     trueGrades.push('1');
                 }
             }
-            const grade = (trueGrades.length * 100) / p.quizs.length;
-            const result = {
-                read: average,
-                understand: grade
-            };
-            User.findById(req.session.user._id)
-                .then(user => {
-                    const newTest = {
-                        name: p.title,
-                        grade: result.understand,
-                        speed: result.read
+            const grade = Math.round((trueGrades.length * 100) / p.quizs.length);
+            User.findById(userId)
+                .then(u => {
+                    const uResult = {
+                        lesson: p.title,
+                        speed: speed,
+                        grade: grade
                     };
-                    user.test.push(newTest);
-                    user.save();
+                    u.test.push(uResult);
+                    u.save()
                 })
-            res.render('main/read-app-result', {
-                result: result
+            return grade
+        })
+        .then(grade => {
+            res.render('main/read-test-result', {
+                grade: grade,
+                speed: speed
             })
-
         })
         .catch(err => {
-            console.log(err)
+            console.log(err);
         })
 }
 exports.getTestResult = (req, res, next) => {
@@ -120,14 +108,14 @@ exports.getTestResult = (req, res, next) => {
 // light speed
 exports.lightSpeed = (req, res, next) => {
     Paragraph.find()
-    .then(t => {
-        res.render('main/light-speed', {
-            t: t
+        .then(t => {
+            res.render('main/light-speed', {
+                t: t
+            })
         })
-    })
-    .catch(err => {
-        console.log(err)
-    })
+        .catch(err => {
+            console.log(err)
+        })
 }
 // mix 
 exports.getMix = (req, res, next) => {
