@@ -73,6 +73,7 @@ exports.postAddParagraph = (req, res, next) => {
     const content = req.body.content;
     const wordcount = req.body.wordCount;
     const quizs = req.body.qu;
+    const plaintext = req.body.plaintext;
     const rightAnswers = req.body.rA;
     const wronganswerone = req.body.wAo;
     const wronganswertwo = req.body.wAt;
@@ -87,7 +88,8 @@ exports.postAddParagraph = (req, res, next) => {
             title: title,
             content: content,
             wordcount: wordcount,
-            quizs: quiz
+            quizs: quiz,
+            plaintext: plaintext
         })
         paragraph.save()
             .then(result => {
@@ -111,7 +113,8 @@ exports.postAddParagraph = (req, res, next) => {
             title: title,
             content: content,
             wordcount: wordcount,
-            quizs: quizlist
+            quizs: quizlist,
+            plaintext: plaintext
         })
         paragraph.save()
             .then(result => {

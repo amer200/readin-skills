@@ -23,9 +23,11 @@ const wAo = document.getElementsByName('wAo');
 const wAt = document.getElementsByName('wAt');
 const content = document.getElementById('content');
 const wordCount = document.getElementById('wordCount');
+const plainText = document.getElementById('plainText');
 
 subBtn.addEventListener('click', () => {
     content.value = quill.root.innerHTML;
     wordCount.value = quill.getText().split(/\s+/).length - 1;
+    plainText.value = quill.getText();
     myForm.submit()
 })

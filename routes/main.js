@@ -12,6 +12,7 @@ router.post('/test-result/:lessonId', mainControllers.calcTestResult);
 router.get('/test-result', mainControllers.getTestResult);
 // light speed
 router.get('/light-speed', mainControllers.lightSpeed);
+router.post('/ligth-test', mainControllers.getLightTest);
 // mix
 router.get('/mix', mainControllers.getMix);
 router.get('/post/:postId', mainControllers.getPost);

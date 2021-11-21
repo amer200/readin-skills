@@ -107,7 +107,7 @@ exports.getTestResult = (req, res, next) => {
 }
 // light speed
 exports.lightSpeed = (req, res, next) => {
-    Paragraph.find()
+    Paragraph.find({}, 'title')
         .then(t => {
             res.render('main/light-speed', {
                 t: t
@@ -116,6 +116,26 @@ exports.lightSpeed = (req, res, next) => {
         .catch(err => {
             console.log(err)
         })
+}
+exports.getLightTest = (req, res, next) => {
+    const pId = req.body.text;
+    const wordnum = req.body.wordnum;
+    if (!pId) {
+        res.render('main/light-test', {
+            err: 'يجب اختيار القطعة'
+        });
+    } else {
+        Paragraph.findById(pId, "plaintext")
+            .then(p => {
+                res.render('main/light-test', {
+                    p: p,
+                    err: false
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            });
+    }
 }
 // mix 
 exports.getMix = (req, res, next) => {
