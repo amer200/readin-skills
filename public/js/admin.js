@@ -13,12 +13,17 @@ const removeBlogBtn = document.getElementById('removeBlogBtn');
 const removeBlogForm = document.getElementById('removeBlogForm');
 const addBlog = document.getElementById('addBlog');
 const blogForm = document.getElementById('blogForm');
+const subBtnBlog = document.getElementById('subBtnBlog');
+const blogContent = document.getElementById('content');
+const student = document.getElementById('student');
+const users = document.getElementById('users');
 brief.addEventListener('click', () => {
     myFormBrief.action = '/admin/brief';
     myFormBrief.style.display = 'block';
     myFormAbout.style.display = 'none';
     blogList.style.display = 'none';
     blogForm.style.display = 'none';
+    users.style.display = 'none';
 });
 
 subBtnBrief.addEventListener('click', () => {
@@ -32,26 +37,42 @@ about.addEventListener('click', () => {
     myFormAbout.style.display = 'block';
     blogList.style.display = 'none';
     blogForm.style.display = 'none';
+    users.style.display = 'none';
 
 });
 subBtnAbout.addEventListener('click', () => {
     aboutContent.value = quill2.root.innerHTML;
     myFormAbout.submit();
 });
-blogBtn.addEventListener('click', ()=>{
+blogBtn.addEventListener('click', () => {
     blogList.style.display = 'block';
     myFormBrief.style.display = 'none';
     myFormAbout.style.display = 'none';
     blogForm.style.display = 'none';
+    users.style.display = 'none';
 })
-removeBlogBtn.addEventListener('click', ()=>{
-    if(confirm('سوف يتم حذف المقالة نهائيا هل انت متأكد ؟')){
-        removeBlogForm.submit()
-    }
+student.addEventListener('click', () => {
+    blogList.style.display = 'none';
+    myFormBrief.style.display = 'none';
+    myFormAbout.style.display = 'none';
+    blogForm.style.display = 'none';
+    users.style.display = 'block';
 })
-addBlog.addEventListener('click', ()=>{
+if (removeBlogBtn) {
+    removeBlogBtn.addEventListener('click', () => {
+        if (confirm('سوف يتم حذف المقالة نهائيا هل انت متأكد ؟')) {
+            removeBlogForm.submit()
+        }
+    })
+}
+addBlog.addEventListener('click', () => {
     blogForm.style.display = 'block';
     blogList.style.display = 'none';
     myFormBrief.style.display = 'none';
     myFormAbout.style.display = 'none';
+    users.style.display = 'none';
+})
+subBtnBlog.addEventListener('click', () => {
+    content.value = quillBlog.root.innerHTML;
+    blogForm.submit();
 })

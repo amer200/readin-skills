@@ -1,6 +1,7 @@
 const MainPage = require('../modells/main-page');
 const Paragraph = require('../modells/paragraph');
 const Blog = require('../modells/blog');
+const User = require('../modells/user');
 const mongoose = require('mongoose');
 
 
@@ -12,14 +13,18 @@ exports.getIndex = (req, res, next) => {
         .then(p => {
             Blog.find()
                 .then(blogs => {
-                    const data = {
-                        brief: p.brief,
-                        about: p.about,
-                        blogs: blogs
-                    }
-                    res.render('admin/index', {
-                        data: data
-                    })
+                    User.find()
+                        .then(users => {
+                            const data = {
+                                brief: p.brief,
+                                about: p.about,
+                                blogs: blogs,
+                                users: users
+                            }
+                            res.render('admin/index', {
+                                data: data
+                            })
+                        })
                 })
         })
         .catch(err => {
@@ -194,32 +199,18 @@ exports.postEditParagraph = (req, res, next) => {
             console.log(err);
         })
 }
-// mix 
-// exports.getMix = (req, res, next) => {
-//     Blog.find()
-//         .then(blogs => {
-//             res.render('admin/mix', {
-//                 blogs: blogs
-//             })
-//         })
-//         .catch(err => {
-//             console.log(err)
-//         })
-// }
 exports.postAddMix = (req, res, next) => {
     const title = req.body.title;
     const content = req.body.content;
-    const textContent = req.body.textContent;
     const img = req.body.img;
     const blog = new Blog({
         title: title,
         content: content,
-        text: textContent,
         img: img
     })
     blog.save()
         .then(result => {
-            res.redirect('/mix');
+            res.redirect('/admin');
         })
         .catch(err => {
             console.log(err)
@@ -241,13 +232,11 @@ exports.postEditPost = (req, res, next) => {
     const postId = req.params.postId;
     const title = req.body.title;
     const content = req.body.content;
-    const textContent = req.body.textContent;
     const img = req.body.img;
     Blog.findById(postId)
         .then(post => {
             post.title = title;
             post.content = content;
-            post.text = textContent;
             post.img = img;
             return post.save();
         })

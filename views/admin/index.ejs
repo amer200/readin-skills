@@ -39,6 +39,13 @@
         منوعات
       </a>
     </li>
+    <li>
+      <a class="nav-link text-white" id="student">
+        <svg class="bi me-2" width="16" height="16">
+          <use xlink:href="#grid" /></svg>
+        متابعة الطلاب
+      </a>
+    </li>
   </ul>
 </div>
 
@@ -70,37 +77,48 @@
 <div class="blogs" id="blogs" style="display: none;">
   <ul class="list-group">
     <li class="list-group-item"> <button type="button" class="btn btn-dark" id="addBlog">اضافة مقالة</button></li>
-      <% data.blogs.forEach( b =>{ %>
-      <li class="list-group-item"><%= b.title%> <a href="/admin/edit-post/<%=b._id%>" type="button" class="btn btn-dark">تعديل</a><form action="/admin/delete-post/<%= b._id %>" method="post" id="removeBlogForm"></form><button
-              type="button" class="btn btn-danger" id="removeBlogBtn">حذف</button></li>
-      <%})%>
+    <% data.blogs.forEach( b =>{ %>
+    <li class="list-group-item"><%= b.title%> <a href="/admin/edit-post/<%=b._id%>" type="button"
+        class="btn btn-dark">تعديل</a>
+      <form action="/admin/delete-post/<%= b._id %>" method="post" id="removeBlogForm"></form><button type="button"
+        class="btn btn-danger" id="removeBlogBtn">حذف</button>
+    </li>
+    <%})%>
+  </ul>
+</div>
+<div class="blogs" id="users" style="display: none;">
+  <ul class="list-group">
+    <% data.users.forEach( b =>{ %>
+    <li class="list-group-item"><%= b.name%> <a href="/admin/user/<%=b._id%>" type="button"
+        class="btn btn-dark">عرض تفاصيل</a>
+    </li>
+    <%})%>
   </ul>
 </div>
 <!-- blogs form -->
 <form class="myForm" action="/admin/add-mix" method="post" id="blogForm" style="display: none;">
   <label class="form-label">اضافة مقالة</label>
   <div class="mb-3">
-      <label for="about" class="form-label">العنوان</label>
-      <input type="text" class="form-control" name="title" >
+    <label for="about" class="form-label">العنوان</label>
+    <input type="text" class="form-control" name="title">
   </div>
   <div class="mb-3">
-      <label for="about" class="form-label">الصورة</label>
-      <input type="text" class="form-control" name="img" >
+    <label for="about" class="form-label">الصورة</label>
+    <input type="text" class="form-control" name="img">
   </div>
   <div class="mb-3">
-      <label for="about" class="form-label">المحتوى</label>
-      <textarea class="form-control" id="hiddenContent" name="content"
-          style="width: 100%; height: 100%; display: none;"></textarea>
-      <input type="hidden" name="textContent" id="blogContent">
-      <div id="editorBlog" dir="rtl"></div>
+    <label for="about" class="form-label">المحتوى</label>
+    <textarea class="form-control" id="content" name="content"
+      style="width: 100%; height: 100%; display: none;"></textarea>
+    <div id="editorBlog" dir="rtl"></div>
   </div>
-  <button type="submit" id="subBtnBlog" class="btn btn-dark">حفظ</button>
+  <button type="button" id="subBtnBlog" class="btn btn-dark">حفظ</button>
 </form>
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js"></script>
 <script src="/js/qull-config.js"></script>
-<script>editorBlog
-    var quill2 = new Quill('#editor2', {
+<script>
+  var quill2 = new Quill('#editor2', {
     modules: {
       toolbar: {
         container: toolbarOptions,
@@ -110,7 +128,7 @@
       },
       imageResize: {
         displaySize: true
-    }
+      }
     },
     theme: 'snow'
   });
@@ -124,7 +142,7 @@
       },
       imageResize: {
         displaySize: true
-    }
+      }
     },
     theme: 'snow'
   });

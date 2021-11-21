@@ -10,11 +10,12 @@
 <%if(err){%>
 <h1 style="color: red;"><%= err%></h1>
 <%}else{%>
-<p id="plainText"><%= p.plaintext%></p>
+<p id="plainText" style="display: none;"><%= p.plaintext%></p>
 <div class="test">
     <div class="container">
         <div class="col-lg-12 box">
-            <span class="word" id="word">مثال</span>
+            <span class="word" id="word"></span>
+            <input type="hidden" id="wNum" value="<%= wNum %>">
             <button type="button" class="btn btn-dark" id="start" style="    right: 10%;
                 width: 80px;">بدء</button>
         </div>

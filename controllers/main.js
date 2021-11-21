@@ -129,7 +129,8 @@ exports.getLightTest = (req, res, next) => {
             .then(p => {
                 res.render('main/light-test', {
                     p: p,
-                    err: false
+                    err: false,
+                    wNum: wordnum
                 })
             })
             .catch(err => {
