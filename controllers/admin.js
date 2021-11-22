@@ -257,3 +257,22 @@ exports.deletePost = (req, res, next) => {
             console.log(err)
         })
 }
+// student
+exports.getStudent = (req, res, next) => {
+    const uId = req.params.uId;
+    User.findById(uId)
+        .then(u =>{
+            const grades = [];
+            u.test.forEach( t =>{
+                let grade = +t.grade;
+                grades.push(grade);
+            })
+            res.render('admin/user',{
+                u: u,
+                maxSpeed: Math.max(...grades)
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}

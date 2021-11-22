@@ -1,0 +1,34 @@
+<%- include('../lay-outs/head') %>
+<%- include('../lay-outs/nav') %>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <h3>اسم الطالب: <%= u.name %></h3>
+        </div>
+        <div class="col-lg-8">
+            <p>اعلى درجة في سرعة القراءة: <%= maxSpeed%> كلمة في الدقيقة</p>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">اسم الدرس</th>
+                <th scope="col">درجة الفهم</th>
+                <th scope="col">سرعة القراءة</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% let i =1 %>
+            <% u.test.forEach( t=>{ %>
+            <tr>
+                <th scope="row"><%=i++%></th>
+                <td><%=t.lesson%></td>
+                <td><%= t.grade%></td>
+                <td><%= t.speed%></td>
+            </tr>
+            <%})%>
+        </tbody>
+    </table>
+</div>
+<%- include('../lay-outs/footer') %>

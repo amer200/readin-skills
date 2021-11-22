@@ -17,5 +17,7 @@ router.post('/add-mix', auth,  adminControllers.postAddMix);
 router.get('/edit-post/:postId', auth,  adminControllers.getEditPost);
 router.post('/edit-post/:postId', auth,  adminControllers.postEditPost);
 router.post('/delete-post/:postId', auth,  adminControllers.deletePost);
+// student
+router.get('/user/:uId', auth, adminControllers.getStudent)
 //export module
 module.exports = router;
