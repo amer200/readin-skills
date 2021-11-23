@@ -42,6 +42,8 @@ header h4 {
 #wNum {
     width: 150px;
     margin: auto;
+    top: -89px;
+    right: 105px;
 }
 
 #start {

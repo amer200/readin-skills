@@ -33,9 +33,5 @@
     const wNum = document.getElementById('wNum');
 
     start.addEventListener('click', () => {
-        if (wNum.value.length <= 0) {
-            alert('حدد عدد الكلمات')
-        } else {
             lightForm.submit();
-        }
     })

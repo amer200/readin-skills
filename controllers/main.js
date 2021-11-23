@@ -120,6 +120,7 @@ exports.lightSpeed = (req, res, next) => {
 exports.getLightTest = (req, res, next) => {
     const pId = req.body.text;
     const wordnum = req.body.wordnum;
+    console.log(wordnum);
     if (!pId) {
         res.render('main/light-test', {
             err: 'يجب اختيار القطعة'
@@ -172,13 +173,13 @@ exports.getPost = (req, res, next) => {
 exports.getStudent = (req, res, next) => {
     const uId = req.params.uId;
     User.findById(uId)
-        .then(u =>{
+        .then(u => {
             const grades = [];
-            u.test.forEach( t =>{
+            u.test.forEach(t => {
                 let grade = +t.grade;
                 grades.push(grade);
             })
-            res.render('main/user',{
+            res.render('main/user', {
                 u: u,
                 maxSpeed: Math.max(...grades)
             })
