@@ -1,0 +1,21 @@
+<%- include('../lay-outs/head') %>
+<%- include('../lay-outs/nav') %>
+<div class="container">
+    <form action="/send-mail" method="post">
+        <div class="mb-3">
+            <label for="email" class="form-label">الايميل</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+                placeholder="user@email.com">
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">الاسم</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="الاسم">
+        </div>
+        <div class="mb-3">
+            <label for="message" class="form-label">الرسالة</label>
+            <textarea name="message" id="message" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">ارسل</button>
+    </form>
+</div>
+<%- include('../lay-outs/footer') %>

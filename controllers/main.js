@@ -3,7 +3,15 @@ const Paragraph = require('../modells/paragraph');
 const User = require('../modells/user');
 const Blog = require('../modells/blog');
 const mongoose = require('mongoose');
-
+const nodemailer = require("nodemailer");
+const transporter = nodemailer.createTransport({
+    host: 'smtp.ethereal.email',
+    port: 587,
+    auth: {
+        user: 'korbin.durgan31@ethereal.email',
+        pass: 'rKj6TdvpNMjYtDUteP'
+    }
+});
 exports.getIndex = (req, res, next) => {
     res.render('main/index');
 }
@@ -85,7 +93,7 @@ exports.calcTestResult = (req, res, next) => {
                     const uResult = {
                         lesson: p.title,
                         speed: speed,
-                        grade: grade
+                        grade: grade,
                     };
                     u.test.push(uResult);
                     u.save()
@@ -93,9 +101,18 @@ exports.calcTestResult = (req, res, next) => {
             return grade
         })
         .then(grade => {
+            let level = (((((speed - 150) * 100) / 350) + grade) / 2);
+            if (level <= 60) {
+                level = 'مستوى ضعيف';
+            } else if (85 < level > 60) {
+                level = ' مستوى جيد';
+            } else if (level >= 85) {
+                level = ' مستوى ممتاز';
+            }
             res.render('main/read-test-result', {
                 grade: grade,
-                speed: speed
+                speed: speed,
+                level: level
             })
         })
         .catch(err => {
@@ -189,4 +206,27 @@ exports.getStudent = (req, res, next) => {
         .catch(err => {
             console.log(err)
         })
+}
+// contact
+exports.getContact = (req, res, next) => {
+    res.render('main/contact-us');
+}
+exports.postContact = (req, res, next) => {
+    const email = req.body.email;
+    const name = req.body.name;
+    const message = req.body.name;
+    const mail = {
+        from: name,
+        to: email,
+        subject: 'بيئةالتعلم',
+        text: `من ${name} <${email}> \n${message}`,
+    };
+    transporter.sendMail(mail, (err, data) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Something went wrong.");
+        } else {
+            res.status(200).send("Email successfully sent to recipient!");
+        }
+    });
 }

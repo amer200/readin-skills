@@ -17,6 +17,9 @@ router.post('/ligth-test', mainControllers.getLightTest);
 router.get('/mix', mainControllers.getMix);
 router.get('/post/:postId', mainControllers.getPost);
 // student
-router.get('/user/:uId', mainControllers.getStudent)
+router.get('/user/:uId', mainControllers.getStudent);
+//contact
+router.get('/contact', mainControllers.getContact);
+router.post('/send-mail', mainControllers.postContact);
 //export module
 module.exports = router;
