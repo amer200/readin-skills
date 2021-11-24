@@ -120,7 +120,8 @@ exports.lightSpeed = (req, res, next) => {
 exports.getLightTest = (req, res, next) => {
     const pId = req.body.text;
     const wordnum = req.body.wordnum;
-    console.log(wordnum);
+    const speed = req.body.speed;
+    console.log(speed);
     if (!pId) {
         res.render('main/light-test', {
             err: 'يجب اختيار القطعة'
@@ -131,7 +132,8 @@ exports.getLightTest = (req, res, next) => {
                 res.render('main/light-test', {
                     p: p,
                     err: false,
-                    wNum: wordnum
+                    wNum: wordnum,
+                    speed: speed
                 })
             })
             .catch(err => {

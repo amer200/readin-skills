@@ -3,7 +3,8 @@ const plainText = document.getElementById('plainText');
 const word = document.getElementById('word');
 const wNum = document.getElementById('wNum').value;
 const wordsArr = plainText.textContent.split(' ');
-const wordPm = 300;
+const speed = document.getElementById('speed');
+const wordPm = (60 / speed.value) * 1000;
 let i = 0;
 start.addEventListener('click', () => {
     if (wNum == 1) {
@@ -14,7 +15,7 @@ start.addEventListener('click', () => {
                 clearInterval(t)
                 i = 0;
             }
-        }, 300 * wNum)
+        }, wordPm * wNum)
     } else if (wNum == 2) {
         var t = setInterval(() => {
             word.innerHTML = `${wordsArr[i]} ${ (wordsArr[i + 1]) ? wordsArr[i + 1] : '' }`;
@@ -23,7 +24,7 @@ start.addEventListener('click', () => {
                 clearInterval(t)
                 return i = 0;
             }
-        }, 300 * wNum)
+        }, wordPm * wNum)
     } else {
         var t = setInterval(() => {
             word.innerHTML = `${wordsArr[i]} ${ (wordsArr[i + 1]) ? wordsArr[i + 1] : '' } ${ (wordsArr[i + 2]) ? wordsArr[i + 2] : '' }`;
@@ -32,6 +33,6 @@ start.addEventListener('click', () => {
                 clearInterval(t)
                 i = 0;
             }
-        }, 300 * wNum)
+        }, wordPm * wNum)
     }
 })
