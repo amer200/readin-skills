@@ -18,6 +18,7 @@ router.get('/edit-post/:postId', auth,  adminControllers.getEditPost);
 router.post('/edit-post/:postId', auth,  adminControllers.postEditPost);
 router.post('/delete-post/:postId', auth,  adminControllers.deletePost);
 // student
-router.get('/user/:uId', auth, adminControllers.getStudent)
+router.get('/user/:uId', auth, adminControllers.getStudent),
+router.post('/edit-user/:uId', auth, adminControllers.postEdituser);
 //export module
 module.exports = router;

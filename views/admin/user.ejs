@@ -9,6 +9,19 @@
             <p>اعلى درجة في سرعة القراءة: <%= maxSpeed%> كلمة في الدقيقة</p>
         </div>
     </div>
+    <div class="row">
+        <form method="post" action="/admin/edit-user/<%= u._id%>">
+            <div class="mb-3" style="display: inline;">
+              <label for="exampleInputEmail1" class="form-label">الاسم</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" name="name" style="width: 50%;" value="<%=u.name%>">
+            </div>
+            <div class="mb-3" style="display: inline;">
+              <label for="exampleInputPassword1" class="form-label">كلمة السر</label>
+              <input type="text" class="form-control" id="exampleInputPassword1" name="password" style="width: 50%;" value="<%=u.password%>">
+            </div>
+            <button type="submit" class="btn btn-primary">حفظ</button>
+          </form>
+    </div>
     <table class="table">
         <thead>
             <tr>

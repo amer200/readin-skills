@@ -276,3 +276,20 @@ exports.getStudent = (req, res, next) => {
             console.log(err)
         })
 }
+exports.postEdituser = (req, res, next) =>{
+    const name = req.body.name;
+    const password = req.body.password;
+    const uId = req.params.uId;
+    User.findById(uId)
+        .then(u =>{
+            u.name = name;
+            u.password = password;
+            return u.save();
+        })
+        .then( result =>{
+            res.redirect(`/admin/user/${uId}`);
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
