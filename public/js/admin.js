@@ -17,6 +17,8 @@ const subBtnBlog = document.getElementById('subBtnBlog');
 const blogContent = document.getElementById('content');
 const student = document.getElementById('student');
 const users = document.getElementById('users');
+const rmForm = document.getElementsByClassName('rm-form');
+const rmBtn = document.getElementsByClassName('rm-btn');
 brief.addEventListener('click', () => {
     myFormBrief.action = '/admin/brief';
     myFormBrief.style.display = 'block';
@@ -75,4 +77,11 @@ addBlog.addEventListener('click', () => {
 subBtnBlog.addEventListener('click', () => {
     content.value = quillBlog.root.innerHTML;
     blogForm.submit();
+})
+Object.values(rmForm).forEach(f => {
+    f.addEventListener('click', ()=>{
+        if(confirm('سيتم حذف الطالب نهائيا')){
+            f.submit();
+        }
+    })
 })

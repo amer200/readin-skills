@@ -293,3 +293,13 @@ exports.postEdituser = (req, res, next) =>{
             console.log(err)
         })
 }
+exports.removeUser = (req, res, next) => {
+    const uId = req.params.uId;
+    User.findByIdAndRemove(uId)
+        .then( r =>{
+            res.redirect('/admin');
+        })
+        .catch(err =>{
+            console.log(err)
+        })
+}

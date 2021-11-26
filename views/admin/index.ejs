@@ -87,10 +87,15 @@
   </ul>
 </div>
 <div class="blogs" id="users" style="display: none;">
-  <ul class="list-group">
+  <ul class="list-group" style="    height: 500px;
+  overflow-y: scroll;">
     <% data.users.forEach( b =>{ %>
-    <li class="list-group-item"><%= b.name%> <a href="/admin/user/<%=b._id%>" type="button"
-        class="btn btn-dark">عرض تفاصيل</a>
+    <li class="list-group-item" style="padding-bottom: 0px;"><%= b.name%> <a href="/admin/user/<%=b._id%>" type="button"
+        class="btn btn-dark">عرض
+        تفاصيل</a>
+      <form action="/admin/remove-user/<%= b._id%>" method="post" class="rm-form"><button type="button"
+          class="btn btn-danger rm-btn" id="rm-btn">حذف
+        </button></form>
     </li>
     <%})%>
   </ul>
