@@ -21,5 +21,7 @@ router.post('/delete-post/:postId', auth,  adminControllers.deletePost);
 router.get('/user/:uId', auth, adminControllers.getStudent),
 router.post('/edit-user/:uId', auth, adminControllers.postEdituser);
 router.post('/remove-user/:uId', auth, adminControllers.removeUser);
+router.post('/add-user', auth, adminControllers.addUser);
+router.post('/remove-lesson/:uId', auth, adminControllers.removeLesson);
 //export module
 module.exports = router;

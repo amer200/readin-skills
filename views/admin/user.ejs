@@ -29,6 +29,7 @@
                 <th scope="col">اسم الدرس</th>
                 <th scope="col">درجة الفهم</th>
                 <th scope="col">سرعة القراءة</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -39,6 +40,7 @@
                 <td><%=t.lesson%></td>
                 <td><%= t.grade%></td>
                 <td><%= t.speed%></td>
+                <td><form action="/admin/remove-lesson/<%= u._id%>" method="post"> <input type="hidden" name="lessonId" value="<%= t._id%>"><button type="submit" class="btn btn-danger"> حذف</button></form></td>
             </tr>
             <%})%>
         </tbody>

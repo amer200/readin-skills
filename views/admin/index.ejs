@@ -87,18 +87,32 @@
   </ul>
 </div>
 <div class="blogs" id="users" style="display: none;">
-  <ul class="list-group" style="    height: 500px;
-  overflow-y: scroll;">
-    <% data.users.forEach( b =>{ %>
-    <li class="list-group-item" style="padding-bottom: 0px;"><%= b.name%> <a href="/admin/user/<%=b._id%>" type="button"
-        class="btn btn-dark">عرض
-        تفاصيل</a>
-      <form action="/admin/remove-user/<%= b._id%>" method="post" class="rm-form"><button type="button"
-          class="btn btn-danger rm-btn" id="rm-btn">حذف
-        </button></form>
-    </li>
-    <%})%>
-  </ul>
+  <div class="row">
+    <ul class="list-group col-lg-6" style=" margin-right: 45px; height: 500px;
+    overflow-y: scroll;">
+      <% data.users.forEach( b =>{ %>
+      <li class="list-group-item" style="padding-bottom: 0px;"><%= b.name%> <a href="/admin/user/<%=b._id%>"
+          type="button" class="btn btn-dark">عرض
+          تفاصيل</a>
+        <form action="/admin/remove-user/<%= b._id%>" method="post" class="rm-form"><button type="button"
+            class="btn btn-danger rm-btn" id="rm-btn">حذف
+          </button></form>
+      </li>
+      <%})%>
+    </ul>
+    <form class="col-lg-4" action="/admin/add-user" method="post">
+      <h1>اضافة طالب</h1>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">اسم الطالب</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" name="name" required>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">كلمة السر</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 </div>
 <!-- blogs form -->
 <form class="myForm" action="/admin/add-mix" method="post" id="blogForm" style="display: none;">

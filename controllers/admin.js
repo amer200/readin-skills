@@ -261,13 +261,13 @@ exports.deletePost = (req, res, next) => {
 exports.getStudent = (req, res, next) => {
     const uId = req.params.uId;
     User.findById(uId)
-        .then(u =>{
+        .then(u => {
             const grades = [];
-            u.test.forEach( t =>{
+            u.test.forEach(t => {
                 let grade = +t.grade;
                 grades.push(grade);
             })
-            res.render('admin/user',{
+            res.render('admin/user', {
                 u: u,
                 maxSpeed: Math.max(...grades)
             })
@@ -276,17 +276,17 @@ exports.getStudent = (req, res, next) => {
             console.log(err)
         })
 }
-exports.postEdituser = (req, res, next) =>{
+exports.postEdituser = (req, res, next) => {
     const name = req.body.name;
     const password = req.body.password;
     const uId = req.params.uId;
     User.findById(uId)
-        .then(u =>{
+        .then(u => {
             u.name = name;
             u.password = password;
             return u.save();
         })
-        .then( result =>{
+        .then(result => {
             res.redirect(`/admin/user/${uId}`);
         })
         .catch(err => {
@@ -296,10 +296,52 @@ exports.postEdituser = (req, res, next) =>{
 exports.removeUser = (req, res, next) => {
     const uId = req.params.uId;
     User.findByIdAndRemove(uId)
-        .then( r =>{
+        .then(r => {
             res.redirect('/admin');
         })
-        .catch(err =>{
+        .catch(err => {
+            console.log(err)
+        })
+}
+exports.addUser = (req, res, next) => {
+    const name = req.body.name;
+    const password = req.body.password;
+    User.find({
+            name: name
+        })
+        .then(u => {
+            if (u) {
+                res.send('err: هذا الاسم موجود بالفعل');
+            }
+            const user = new User({
+                name: name,
+                password: password,
+                role: 'basic'
+            })
+            return user.save()
+        })
+        .then(result => {
+            res.redirect('/admin')
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+exports.removeLesson = (req, res, next) =>{
+    const lesson = req.body.lessonId;
+    const user = req.params.uId;
+    User.findById(user)
+        .then(u =>{
+            const newLarr = u.test.filter( t=>{
+                return t._id.toString() !== lesson.toString()
+            })
+            u.test = newLarr;
+            return u.save()
+        })
+        .then( result =>{
+            res.redirect(`/admin/user/${user}`)
+        })
+        .catch( err => {
             console.log(err)
         })
 }
