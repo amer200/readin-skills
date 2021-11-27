@@ -35,6 +35,14 @@ header h4 {
     width: 10px;
 }
 
+.dropdown-toggle {
+    text-align: end;
+    background: none;
+    color: #000;
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
 .menu {
     margin-top: 20%;
 }
@@ -66,4 +74,48 @@ header h4 {
     padding: 55px;
     border-radius: 30px;
     height: 150px;
+}
+
+.wordNum {
+    margin-top: -3px;
+    margin-right: 30px;
+    margin-bottom: -13px;
+}
+
+@media (max-width: 720px) {
+    .read-img {
+        display: none;
+    }
+
+    .dropdown-toggle {
+        margin-right: -75px;
+        margin-top: 7px;
+    }
+
+    .str .tex {
+        width: 86.8%;
+        margin-right: 13.2%;
+    }
+
+    .wordNum {
+        position: relative;
+        top: 50px;
+    }
+
+    #start {
+        position: relative;
+        right: 45%;
+        top: 10px;
+    }
+}
+
+@media (min-width: 720px) and (max-width: 980px) {
+    .str .tex {
+        width: 86.8%;
+        margin-right: 6.2%;
+    }
+
+    .read-img {
+        display: none;
+    }
 }
