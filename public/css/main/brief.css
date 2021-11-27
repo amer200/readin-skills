@@ -1,6 +1,6 @@
 header{
     height: 200px;
-    background-color: #306BC6;
+    background-image: url('/img/backg.png');
     margin-bottom: 50px;
 }
 header .p-img{
