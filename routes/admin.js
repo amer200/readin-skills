@@ -23,5 +23,7 @@ router.post('/edit-user/:uId', auth, adminControllers.postEdituser);
 router.post('/remove-user/:uId', auth, adminControllers.removeUser);
 router.post('/add-user', auth, adminControllers.addUser);
 router.post('/remove-lesson/:uId', auth, adminControllers.removeLesson);
+// rules 
+router.post('/readRule', auth, adminControllers.readRule);
 //export module
 module.exports = router;

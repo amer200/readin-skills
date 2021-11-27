@@ -2,6 +2,7 @@ const MainPage = require('../modells/main-page');
 const Paragraph = require('../modells/paragraph');
 const Blog = require('../modells/blog');
 const User = require('../modells/user');
+const Rule = require('../modells/rule');
 const mongoose = require('mongoose');
 
 
@@ -65,9 +66,13 @@ exports.about = (req, res, next) => {
 exports.getReadApp = (req, res, next) => {
     Paragraph.find()
         .then(p => {
-            res.render('admin/read-app', {
-                p: p
-            });
+            Rule.findOne()
+                .then(r =>{
+                    res.render('admin/read-app', {
+                        p: p,
+                        r:r
+                    });
+                })
         })
         .catch(err => {
             console.log(err)
@@ -342,6 +347,29 @@ exports.removeLesson = (req, res, next) => {
             res.redirect(`/admin/user/${user}`)
         })
         .catch(err => {
+            console.log(err)
+        })
+}
+exports.readRule = (req, res, next) =>{
+    const readRules = req.body.readRule;
+    const lightRules = req.body.lightRule;
+    Rule.findOne()
+        .then(r=>{
+            if(!r){
+                const r = new Rule({
+                    read: readRules,
+                    light: lightRules
+                })
+                return r.save()
+            }
+            r.read = readRules;
+            r.light = lightRules;
+            return r.save()
+        })
+        .then( result =>{
+            res.redirect('/admin')
+        })
+        .catch( err=>{
             console.log(err)
         })
 }

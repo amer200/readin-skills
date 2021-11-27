@@ -52,3 +52,26 @@ removeBtn.addEventListener('click', ()=>{
         removeForm.submit()
     }
 })
+
+// rules
+const readRBtn = document.getElementById('readRule');
+const lightRBtn = document.getElementById('lightRule');
+const readRoot = document.getElementById('readRoot');
+const lightRoot = document.getElementById('lightRoot');
+/* <input type="text" class="form-control" name="readRule" placeholder="تعليمات"> */
+readRBtn.addEventListener('click', ()=>{
+    const myE = document.createElement('input');
+    myE.classList = 'form-control';
+    myE.setAttribute('name', "readRule");
+    myE.setAttribute('type', "text");
+    myE.setAttribute('placeholder', "تعليمات");
+    readRoot.appendChild(myE);
+})
+lightRBtn.addEventListener('click', ()=>{
+    const myE = document.createElement('input');
+    myE.classList = 'form-control';
+    myE.setAttribute('name', "lightRule");
+    myE.setAttribute('type', "text");
+    myE.setAttribute('placeholder', "تعليمات");
+    lightRoot.appendChild(myE);
+})

@@ -13,8 +13,11 @@
             <!-- <div class="tex">لحساب سرعة القراءة الخاصة بك عليك اتباع التعليمات التالية:</div> -->
             <li class="list-group-item tex" value="5">لحساب سرعة القراءة الخاصة بك عليك اتباع التعليمات التالية:</li>
             <ol class="list-group list-group-numbered">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Cras justo odio</li>
+                <%if(r){%>
+                <% r.read.forEach( r=>{%>
+                <li class="list-group-item"><%=r%></li>
+                <%})%>
+                <%}%>
             </ol>
         </div>
     </div>
@@ -31,8 +34,8 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <%for(let i=0; i < t.length; i++){%>
-                        <li><a class="dropdown-item" href="/tes-read/<%=t[i]._id%>"><%= t[i].title%></a></li>
-                        <%}%>
+                <li><a class="dropdown-item" href="/tes-read/<%=t[i]._id%>"><%= t[i].title%></a></li>
+                <%}%>
                     </ul>
                 </div>
             </div>
@@ -41,4 +44,4 @@
     </div>
 </div>
 <%- include('../lay-outs/icon-bar') %>
-                        <%- include('../lay-outs/footer') %>
+                <%- include('../lay-outs/footer') %>

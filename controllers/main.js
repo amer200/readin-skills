@@ -2,6 +2,7 @@ const MainPage = require('../modells/main-page');
 const Paragraph = require('../modells/paragraph');
 const User = require('../modells/user');
 const Blog = require('../modells/blog');
+const Rule = require('../modells/rule');
 const mongoose = require('mongoose');
 const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
@@ -34,8 +35,12 @@ exports.getAbout = (req, res, next) => {
 exports.getReadApp = (req, res, next) => {
     Paragraph.find({}, 'title')
         .then(t => {
-            res.render('main/read-app', {
-                t: t
+            Rule.findOne()
+            .then( r=>{
+                res.render('main/read-app', {
+                    t: t,
+                    r: r
+                })
             })
         })
         .catch(err => {
@@ -126,9 +131,13 @@ exports.getTestResult = (req, res, next) => {
 exports.lightSpeed = (req, res, next) => {
     Paragraph.find({}, 'title')
         .then(t => {
-            res.render('main/light-speed', {
-                t: t
-            })
+            Rule.findOne()
+                .then(r =>{
+                    res.render('main/light-speed', {
+                        t: t,
+                        r:r
+                    })
+                })
         })
         .catch(err => {
             console.log(err)
