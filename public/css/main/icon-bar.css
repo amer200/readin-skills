@@ -6,6 +6,11 @@
 }
 .icon-bar img{
     width: 115px;
+    transition: all 1s;
+    /* transform: scale(1); */
+}
+.icon-bar img:hover {
+    transform: rotate(360deg) scale(1.1);
 }
 .icon-bar .lead{
     color: #999;

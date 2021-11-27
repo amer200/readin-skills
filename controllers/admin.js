@@ -311,7 +311,7 @@ exports.addUser = (req, res, next) => {
         })
         .then(u => {
             if (u) {
-                res.send('err: هذا الاسم موجود بالفعل');
+                return res.send('err: هذا الاسم موجود بالفعل');
             }
             const user = new User({
                 name: name,
@@ -327,21 +327,21 @@ exports.addUser = (req, res, next) => {
             console.log(err)
         })
 }
-exports.removeLesson = (req, res, next) =>{
+exports.removeLesson = (req, res, next) => {
     const lesson = req.body.lessonId;
     const user = req.params.uId;
     User.findById(user)
-        .then(u =>{
-            const newLarr = u.test.filter( t=>{
+        .then(u => {
+            const newLarr = u.test.filter(t => {
                 return t._id.toString() !== lesson.toString()
             })
             u.test = newLarr;
             return u.save()
         })
-        .then( result =>{
+        .then(result => {
             res.redirect(`/admin/user/${user}`)
         })
-        .catch( err => {
+        .catch(err => {
             console.log(err)
         })
 }
