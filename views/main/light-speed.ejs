@@ -3,8 +3,7 @@
 <link rel="stylesheet" href="/css/main/light-read.css">
 <header>
     <div class="container">
-        <h1>تطبيق القراءة السريعة</h1>
-        <h4>لتنمية مهارتي القراءة السريعة و الفهم القرائي</h4>
+        <h1>تطبيق الومضة السريعة</h1>
     </div>
 </header>
 <div class="container-fluid main">
@@ -14,10 +13,10 @@
             <li class="list-group-item tex" value="5">لحساب سرعة القراءة الخاصة بك عليك اتباع التعليمات التالية:</li>
             <ol class="list-group list-group-numbered">
                 <%if(r){%>
-                    <% r.light.forEach( r=>{%>
-                    <li class="list-group-item"><%=r%></li>
-                    <%})%>
-                    <%}%>
+                <% r.light.forEach( r=>{%>
+                <li class="list-group-item"><%=r%></li>
+                <%})%>
+                <%}%>
             </ol>
         </div>
     </div>
@@ -35,62 +34,63 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <% t.forEach( t=>{%>
-                            <!-- <li><a class="dropdown-item" href="/tes-read/<%=t._id%>"><%= t.title%></a></li> -->
-                            <li>
-                                <div class="form-chec dropdown-item">
-                                    <input class="form-check-input" type="radio" name="text" value="<%= t._id%>">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        <%= t.title%>
-                                    </label>
-                                </div>
-                            </li>
-                            <%})%>
-                        </ul>
+                <!-- <li><a class="dropdown-item" href="/tes-read/<%=t._id%>"><%= t.title%></a></li> -->
+                <li>
+                    <div class="form-chec dropdown-item">
+                        <input class="form-check-input" type="radio" name="text" value="<%= t._id%>">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            <%= t.title%>
+                        </label>
                     </div>
-                    <div class="dropdown" id="wNum">
-                        <button class="btn btn-secondary dropdown-toggle wordNum" type="button" id="dropdownMenuButton1"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            عدد الكلمات
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="wordnum"
-                                            id="flexRadioDefault1" value="1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            1
-                                        </label>
-                                    </div>
-                            </li>
-                            <li><a class="dropdown-item">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="wordnum"
-                                            id="flexRadioDefault2" value="2">
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            2
-                                        </label>
-                                    </div>
-                                </a></a></li>
-                            <li><a class="dropdown-item">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="wordnum"
-                                            id="flexRadioDefault2" checked value="3">
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            3
-                                        </label>
-                                    </div>
-                                </a></a></li>
-                        </ul>
-                    </div>
-                    <input type="number" min="1" class="form-control" id='speed' name="speed"
-                        placeholder="معدل السرعة في الدقيقة" style="    width: 50%;
-                        margin-right: 65px;">
-                </form>
-                <button type="button" class="btn btn-primary" id="start">بدء التدريب</button>
-            </div>
+                </li>
+                <%})%>
+                </ul>
         </div>
-        <img class="col-6 read-img" src="/img/book.jpg" alt="" style="height: 100%;">
+        <div class="dropdown" id="wNum">
+            <button class="btn btn-secondary dropdown-toggle wordNum" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                عدد الكلمات
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="wordnum" id="flexRadioDefault1"
+                                value="1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                1
+                            </label>
+                        </div>
+                </li>
+                <li><a class="dropdown-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="wordnum" id="flexRadioDefault2"
+                                value="2">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                2
+                            </label>
+                        </div>
+                    </a></a></li>
+                <li><a class="dropdown-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="wordnum" id="flexRadioDefault2" checked
+                                value="3">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                3
+                            </label>
+                        </div>
+                    </a></a></li>
+            </ul>
+        </div>
+        <input type="number" min="1" class="form-control" id='speed' name="speed" placeholder="معدل السرعة في الدقيقة"
+            style="  position: relative;
+                        top: -57px;
+                        right: 115px;">
+        </form>
+        <button type="button" class="btn btn-primary" id="start">بدء التدريب</button>
     </div>
+</div>
+<img class="col-6 read-img" src="/img/pic34.jpg" alt="" style="height: 100%;">
+</div>
 </div>
 <script src="/js/light-speed.js"></script>
 <%- include('../lay-outs/icon-bar') %>

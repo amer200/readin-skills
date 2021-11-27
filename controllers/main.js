@@ -6,11 +6,12 @@ const Rule = require('../modells/rule');
 const mongoose = require('mongoose');
 const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // use SSL
     auth: {
-        user: 'korbin.durgan31@ethereal.email',
-        pass: 'rKj6TdvpNMjYtDUteP'
+        user: 'hsnpal99@gmail.com',
+        pass: '102030102030$'
     }
 });
 exports.getIndex = (req, res, next) => {

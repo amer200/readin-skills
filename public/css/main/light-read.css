@@ -19,14 +19,20 @@ header h4 {
 .str .list-group-numbered {
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
+    padding-right: 0;
+}
+
+.str {
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden;
 }
 
 .str .tex {
     background-color: #E48823;
     line-height: 2;
     color: #fff;
-    width: 96.8%;
-    margin-right: 3.2%;
+    width: 100%;
 }
 
 .dropdown {
@@ -45,13 +51,16 @@ header h4 {
 
 .menu {
     margin-top: 20%;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 #wNum {
     width: 150px;
     margin: auto;
-    top: -89px;
-    right: 105px;
+    top: -30px;
+    right: -185px;
 }
 
 #start {
@@ -92,10 +101,11 @@ header h4 {
         margin-top: 7px;
     }
 
+    /* 
     .str .tex {
         width: 86.8%;
         margin-right: 13.2%;
-    }
+    } */
 
     .wordNum {
         position: relative;
@@ -107,15 +117,29 @@ header h4 {
         right: 45%;
         top: 10px;
     }
+
+    .menu {
+        margin-right: 0;
+    }
+    #wNum{
+        right: 112%;
+    }
 }
 
 @media (min-width: 720px) and (max-width: 980px) {
-    .str .tex {
+    /* .str .tex {
         width: 86.8%;
         margin-right: 6.2%;
-    }
+    } */
 
     .read-img {
         display: none;
+    }
+
+    .menu {
+        margin-right: 0;
+    }
+    #wNum{
+        right: 112%;
     }
 }
