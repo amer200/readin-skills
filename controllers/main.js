@@ -6,9 +6,9 @@ const Rule = require('../modells/rule');
 const mongoose = require('mongoose');
 const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
-    host: 'mail.drhsn.com',
-    Port: 26,
-    rejectUnauthorized: false,
+    host: 'drhsn.com',
+    Port: 465,
+    secure: true,
     auth: {
         user: '_mainaccount@drhsn.com',
         pass: 'swujkiwestabrimorubredres'
@@ -226,16 +226,17 @@ exports.postContact = (req, res, next) => {
     const name = req.body.name;
     const message = req.body.name;
     const mail = {
-        from: email,
-        subject: 'بيئةالتعلم',
+        from: 'contact@drhsn.com',
+        to: 'hsnpal99@gmail.com',
+        subject: 'بيئةالتعلم/اتصل بنا',
         text: `من ${name} <${email}> \n${message}`,
     };
     transporter.sendMail(mail, (err, data) => {
         if (err) {
             console.log(err);
-            res.status(500).send(err);
+            res.status(500).send('error ):');
         } else {
-            res.status(200).send("Email successfully sent to recipient!");
+            res.status(200).send("تم اراسال الرسالة");
         }
     });
 }
