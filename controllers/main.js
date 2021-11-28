@@ -7,9 +7,11 @@ const mongoose = require('mongoose');
 const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
     host: 'mail.drhsn.com',
+    Port: 26,
+    rejectUnauthorized: false,
     auth: {
-        user: 'admin@drhsn.com',
-        pass: '6B+U!Oyu]wA6'
+        user: '_mainaccount@drhsn.com',
+        pass: 'swujkiwestabrimorubredres'
     }
 });
 exports.getIndex = (req, res, next) => {
@@ -35,12 +37,12 @@ exports.getReadApp = (req, res, next) => {
     Paragraph.find({}, 'title')
         .then(t => {
             Rule.findOne()
-            .then( r=>{
-                res.render('main/read-app', {
-                    t: t,
-                    r: r
+                .then(r => {
+                    res.render('main/read-app', {
+                        t: t,
+                        r: r
+                    })
                 })
-            })
         })
         .catch(err => {
             console.log(err)
@@ -131,10 +133,10 @@ exports.lightSpeed = (req, res, next) => {
     Paragraph.find({}, 'title')
         .then(t => {
             Rule.findOne()
-                .then(r =>{
+                .then(r => {
                     res.render('main/light-speed', {
                         t: t,
-                        r:r
+                        r: r
                     })
                 })
         })
@@ -224,8 +226,7 @@ exports.postContact = (req, res, next) => {
     const name = req.body.name;
     const message = req.body.name;
     const mail = {
-        from: name,
-        to: email,
+        from: email,
         subject: 'بيئةالتعلم',
         text: `من ${name} <${email}> \n${message}`,
     };
