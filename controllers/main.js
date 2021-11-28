@@ -6,12 +6,12 @@ const Rule = require('../modells/rule');
 const mongoose = require('mongoose');
 const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
+    host: 'drhsn.com',
     port: 465,
     secure: true, // use SSL
     auth: {
-        user: 'hsnpal99@gmail.com',
-        pass: '102030102030$'
+        user: 'admin@drhsn.com',
+        pass: '6B+U!Oyu]wA6'
     }
 });
 exports.getIndex = (req, res, next) => {
