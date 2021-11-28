@@ -6,9 +6,7 @@ const Rule = require('../modells/rule');
 const mongoose = require('mongoose');
 const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
-    host: 'drhsn.com',
-    port: 465,
-    secure: true, // use SSL
+    host: 'mail.drhsn.com',
     auth: {
         user: 'admin@drhsn.com',
         pass: '6B+U!Oyu]wA6'
