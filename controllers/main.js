@@ -21,7 +21,7 @@ exports.getBrief = (req, res, next) => {
     MainPage.findOne()
         .then(p => {
             res.render('main/brief', {
-                b: p.brief
+                b: ((p)? p.brief: 'قريبا')
             })
         })
 }
@@ -29,7 +29,7 @@ exports.getAbout = (req, res, next) => {
     MainPage.findOne()
         .then(p => {
             res.render('main/about', {
-                b: p.about
+                b: ((p)? p.about: 'قريبا')
             })
         })
 }

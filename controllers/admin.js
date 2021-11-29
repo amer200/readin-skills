@@ -17,10 +17,10 @@ exports.getIndex = (req, res, next) => {
                     User.find()
                         .then(users => {
                             const data = {
-                                brief: p.brief,
-                                about: p.about,
-                                blogs: blogs,
-                                users: users
+                                brief: (p) ? p.brief: 'السيرة الذاتية',
+                                about: (p) ?p.about: 'عن بيئة التعلم',
+                                blogs: (blogs) ? blogs: 'المقالات',
+                                users: (users) ? users: 'المستخدمين'
                             }
                             res.render('admin/index', {
                                 data: data

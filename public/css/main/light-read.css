@@ -40,7 +40,9 @@ header h4 {
     right: 235px;
     width: 10px;
 }
-
+.dropdown-item{
+    text-align: right;
+}
 .dropdown-toggle {
     text-align: end;
     background: none;
@@ -66,7 +68,7 @@ header h4 {
 #start {
     position: relative;
     right: 65%;
-    top: -36px;
+    top: 110px;
 }
 
 /*****************/
