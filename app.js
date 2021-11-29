@@ -52,12 +52,12 @@ app.listen(port, () => {
     mongoose.connect('mongodb+srv://admin:753698421@elearning.pwoet.mongodb.net/Elearning?retryWrites=true&w=majority')
         .then(result => {
             console.log('conectet to database');
-            User.findOne()
+            User.findOne({name: 'hassan'})
                 .then( user => {
                     if(!user){
                         const user = new User({
-                            name: "amer",
-                            password: "amer753",
+                            name: "hassan",
+                            password: "2880319",
                             role: 'admin'
                         });
                         return user.save()
