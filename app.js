@@ -49,7 +49,7 @@ app.use('/test-result/619660c6443fe7b1076f6b94', (req, res, next)=>{
 })
 app.listen(port, () => {
     console.log(`Elearning app listening at http://localhost:${port}`);
-    mongoose.connect('mongodb+srv://drhasan:753698@cluster0.utxxi.mongodb.net/speedreading')
+    mongoose.connect('mongodb+srv://admin:753698421@elearning.pwoet.mongodb.net/Elearning?retryWrites=true&w=majority')
         .then(result => {
             console.log('conectet to database');
             User.findOne()
@@ -57,7 +57,7 @@ app.listen(port, () => {
                     if(!user){
                         const user = new User({
                             name: "amer",
-                            password: "123",
+                            password: "amer753",
                             role: 'admin'
                         });
                         return user.save()
