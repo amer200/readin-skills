@@ -36,8 +36,15 @@ exports.brief = (req, res, next) => {
     const content = req.body.content;
     MainPage.findOne()
         .then(p => {
-            p.brief = content;
-            return p.save()
+            if(p){
+                p.brief =  content;
+                return p.save()
+            }else{
+                const b = new MainPage({
+                    brief: content
+                })
+                return b.save()
+            }
         })
         .then(result => {
             res.redirect('/admin')
