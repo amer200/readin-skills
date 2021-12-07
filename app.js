@@ -11,7 +11,8 @@ const User = require('./modells/user'); //tempr
 app.use(session({
     secret: 'my secret',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true,
+    cookie: {originalMaxAge: 3600 * 1000}
 }));
 app.use( (req, res, next)=>{
     const user = req. session.user;
