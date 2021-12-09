@@ -12,7 +12,7 @@ app.use(session({
     secret: 'my secret',
     resave: false,
     saveUninitialized: true,
-    cookie: {originalMaxAge: 3600 * 1000}
+    cookie: {maxAge: 3600 * 1000}
 }));
 app.use( (req, res, next)=>{
     const user = req. session.user;
