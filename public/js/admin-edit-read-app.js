@@ -31,3 +31,4 @@ subBtn.addEventListener('click', () => {
     plainText.value = quill.getText();
     myForm.submit()
 })
+

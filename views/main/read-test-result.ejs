@@ -1,26 +1,96 @@
 <%- include('../lay-outs/head') %>
-<%- include('../lay-outs/nav') %>
-<link rel="stylesheet" href="/css/main/read-test-result.css">
-<header>
-    <div class="container">
-        <h1>نتيجة سرعة القراءة و الاستيعاب</h1>
-    </div>
-</header>
-<div class="container">
-    <div class="row">
-        <div class="box col-lg-4">
-            <h3><%= level %></h3>
-            <div class="grades">
-                <span class="s-speed"><%=speed%></span><p class="speed">كلمة في الدقيقة</p>
-                <span class="s-un"><%=grade%>%</span><p class="un">درجة الفهم</p>
+    <%- include('../lay-outs/nav') %>
+        <link rel="stylesheet" href="/css/main/read-test-result.css">
+        <header>
+            <div class="container">
+                <h1>نتيجة سرعة القراءة و الاستيعاب</h1>
+            </div>
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="box col-lg-4">
+                    <h3>
+                        <%= level %>
+                    </h3>
+                    <div class="grades">
+                        <span class="s-speed">
+                            <%=speed%>
+                        </span>
+                        <p class="speed">كلمة في الدقيقة</p>
+                        <span class="s-un">
+                            <%=grade%>%
+                        </span>
+                        <p class="un">درجة الفهم</p>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="    display: block;
+            margin-right: auto;
+            margin-left: auto;
+            margin-bottom: 20px;">
+                اعرض اجاباتي
+            </button>
+        </div>
+        <div class="container">
+            <div class="row">
+                <p class="lead myText">متوسط سرعة القراءة العادية هو ما يقرب من 150 كلمة في الدقيقة الواحدة و باتقان
+                    مهارات القراءة
+                    السريعة يستطيع الطالب أن يقراأ ما بين 350 كلمة الى 500 كلمة في الدقيقة</p>
             </div>
         </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <p class="lead myText">متوسط سرعة القراءة العادية هو ما يقرب من 150 كلمة في الدقيقة الواحدة و باتقان مهارات القراءة
-            السريعة يستطيع الطالب أن يقراأ ما بين 350 كلمة الى 500 كلمة في الدقيقة</p>
-    </div>
-</div>
-<%- include('../lay-outs/footer') %>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <% let i=0%>
+                            <% quizs.forEach( q=> { %>
+                                <div class="quiz" style="border-bottom: 2px solid; margin-bottom: 10px;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault<%=i%>"
+                                            id="flexRadioDefault1" checked="true" disabled>
+                                        <label class="form-check-label" for="flexRadioDefault1" style="color: green;">
+                                            <%= q.rightanswer %>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault<%=i%>"
+                                            id="flexRadioDefault1" disabled>
+                                        <% if(userAnswers[i]==q.wrongAnswerone ){%>
+                                            <label class="form-check-label" for="flexRadioDefault1" style="color: red;">
+                                                <%= q.wrongAnswerone %>
+                                            </label>
+                                            <%}else{%>
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    <%= q.wrongAnswerone %>
+                                                </label>
+                                                <%}%>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault<%=i%>"
+                                            id="flexRadioDefault1" disabled>
+                                        <% if(userAnswers[i]==q.wrongAnswertwo ){%>
+                                            <label class="form-check-label" for="flexRadioDefault1" style="color: red;">
+                                                <%= q.wrongAnswertwo %>
+                                            </label>
+                                            <%}else{%>
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    <%= q.wrongAnswertwo %>
+                                                </label>
+                                                <%}%>
+                                    </div>
+                                </div>
+                                <% i++%>
+                                    <%})%>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">غلق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('../lay-outs/footer') %>

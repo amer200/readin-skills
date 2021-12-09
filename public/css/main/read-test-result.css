@@ -19,6 +19,7 @@ header h1 {
     border-radius: 20px;
     margin-bottom: 35px;
 }
+
 .box h3 {
     text-align: center;
     margin-bottom: 50px
@@ -38,8 +39,14 @@ header h1 {
     right: 24.5%;
     font-size: 1.3rem;
 }
-.myText{
+
+.myText {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.form-check-input:disabled~.form-check-label,
+.form-check-input[disabled]~.form-check-label {
+    opacity: 1 !important;
 }

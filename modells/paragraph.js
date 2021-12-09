@@ -30,6 +30,14 @@ const paragraphSchema = new Schema({
     wordcount: {
         type: String
     },
+    so: {
+        type: Number,
+        unique: false
+    },
+    hide: {
+        type: Boolean,
+        default: false
+    },
     quizs: [quizSchema]
 })
 module.exports = mongoose.model('Paragraph', paragraphSchema);

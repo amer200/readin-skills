@@ -17,10 +17,10 @@ exports.getIndex = (req, res, next) => {
                     User.find()
                         .then(users => {
                             const data = {
-                                brief: (p) ? p.brief: 'السيرة الذاتية',
-                                about: (p) ?p.about: 'عن بيئة التعلم',
-                                blogs: (blogs) ? blogs: 'المقالات',
-                                users: (users) ? users: 'المستخدمين'
+                                brief: (p) ? p.brief : 'السيرة الذاتية',
+                                about: (p) ? p.about : 'عن بيئة التعلم',
+                                blogs: (blogs) ? blogs : 'المقالات',
+                                users: (users) ? users : 'المستخدمين'
                             }
                             res.render('admin/index', {
                                 data: data
@@ -36,15 +36,8 @@ exports.brief = (req, res, next) => {
     const content = req.body.content;
     MainPage.findOne()
         .then(p => {
-            if(p){
-                p.brief =  content;
-                return p.save()
-            }else{
-                const b = new MainPage({
-                    brief: content
-                })
-                return b.save()
-            }
+            p.brief = content;
+            return p.save()
         })
         .then(result => {
             res.redirect('/admin')
@@ -71,13 +64,14 @@ exports.about = (req, res, next) => {
 // read app
 
 exports.getReadApp = (req, res, next) => {
-    Paragraph.find()
+    Paragraph.find().sort('so')
         .then(p => {
+
             Rule.findOne()
-                .then(r =>{
+                .then(r => {
                     res.render('admin/read-app', {
                         p: p,
-                        r:r
+                        r: r
                     });
                 })
         })
@@ -101,14 +95,26 @@ exports.postAddParagraph = (req, res, next) => {
             wrongAnswerone: wronganswerone,
             wrongAnswertwo: wronganswertwo
         };
-        const paragraph = new Paragraph({
-            title: title,
-            content: content,
-            wordcount: wordcount,
-            quizs: quiz,
-            plaintext: plaintext
-        })
-        paragraph.save()
+        Paragraph.find()
+            .then(p => {
+                if (p) {
+                    console.log(p)
+                    return sortNum = +p.length + 1
+                } else {
+                    return sortNum = 1
+                }
+            })
+            .then(sortNum => {
+                const paragraph = new Paragraph({
+                    title: title,
+                    content: content,
+                    wordcount: wordcount,
+                    quizs: quiz,
+                    plaintext: plaintext,
+                    so: sortNum
+                })
+                return paragraph.save()
+            })
             .then(result => {
                 res.redirect('/admin/read-app');
             })
@@ -126,14 +132,26 @@ exports.postAddParagraph = (req, res, next) => {
             };
             quizlist.push(quiz)
         }
-        const paragraph = new Paragraph({
-            title: title,
-            content: content,
-            wordcount: wordcount,
-            quizs: quizlist,
-            plaintext: plaintext
-        })
-        paragraph.save()
+        Paragraph.find()
+            .then(p => {
+                if (p) {
+                    console.log(p)
+                    return sortNum = +p.length + 1
+                } else {
+                    return sortNum = 1
+                }
+            })
+            .then(sortNum => {
+                const paragraph = new Paragraph({
+                    title: title,
+                    content: content,
+                    wordcount: wordcount,
+                    quizs: quizlist,
+                    plaintext: plaintext,
+                    so: sortNum
+                })
+                return paragraph.save()
+            })
             .then(result => {
                 res.redirect('/admin/read-app');
             })
@@ -174,6 +192,7 @@ exports.postEditParagraph = (req, res, next) => {
     const rightAnswers = req.body.rA;
     const wronganswerone = req.body.wAo;
     const wronganswertwo = req.body.wAt;
+    const sortNum = req.body.sortNum;
     Paragraph.findOne({
             _id: pId
         })
@@ -181,6 +200,7 @@ exports.postEditParagraph = (req, res, next) => {
             p.title = title;
             p.content = content;
             p.wordcount = wordcount;
+            p.sortnum = sortNum;
             if (typeof quizs == 'string') {
                 const quiz = {
                     quiz: quizs,
@@ -211,6 +231,43 @@ exports.postEditParagraph = (req, res, next) => {
             console.log(err);
         })
 }
+exports.sortP = (req, res, next) => {
+    const sortnum = req.body.sortNum;
+    const pId = req.body.pId;
+    Paragraph.findById(pId)
+        .then(p => {
+            p.so = sortnum;
+            return p.save()
+        })
+        .then(r => {
+            res.send(JSON.stringify({
+                'message': 'ok'
+            }))
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+exports.hideParag = (req, res, next) => {
+    const pId = req.params.pId;
+    Paragraph.findById(pId)
+        .then(p => {
+            if (p.hide == false) {
+                p.hide = true;
+                return p.save()
+            } else {
+                p.hide = false;
+                return p.save()
+            }
+        })
+        .then(result => {
+            res.redirect('/admin/read-app')
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+// mix
 exports.postAddMix = (req, res, next) => {
     const title = req.body.title;
     const content = req.body.content;
@@ -357,12 +414,12 @@ exports.removeLesson = (req, res, next) => {
             console.log(err)
         })
 }
-exports.readRule = (req, res, next) =>{
+exports.readRule = (req, res, next) => {
     const readRules = req.body.readRule;
     const lightRules = req.body.lightRule;
     Rule.findOne()
-        .then(r=>{
-            if(!r){
+        .then(r => {
+            if (!r) {
                 const r = new Rule({
                     read: readRules,
                     light: lightRules
@@ -373,10 +430,10 @@ exports.readRule = (req, res, next) =>{
             r.light = lightRules;
             return r.save()
         })
-        .then( result =>{
+        .then(result => {
             res.redirect('/admin')
         })
-        .catch( err=>{
+        .catch(err => {
             console.log(err)
         })
 }

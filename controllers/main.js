@@ -34,7 +34,7 @@ exports.getAbout = (req, res, next) => {
         })
 }
 exports.getReadApp = (req, res, next) => {
-    Paragraph.find({}, 'title')
+    Paragraph.find({hide: false}, 'title').sort('so')
         .then(t => {
             Rule.findOne()
                 .then(r => {
@@ -87,8 +87,10 @@ exports.calcTestResult = (req, res, next) => {
     Paragraph.findById(lessonId)
         .then(p => {
             const trueGrades = [];
+            const userAnswers = [];
             for (let i = 0; i < p.quizs.length; i++) {
                 const userAnswer = req.body[p.quizs[i].quiz];
+                userAnswers.push(userAnswer);
                 if (userAnswer == p.quizs[i].rightanswer) {
                     trueGrades.push('1');
                 }
@@ -99,14 +101,18 @@ exports.calcTestResult = (req, res, next) => {
                     const uResult = {
                         lesson: p.title,
                         speed: speed,
-                        grade: grade,
+                        grade: grade
                     };
                     u.test.push(uResult);
                     u.save()
                 })
-            return grade
+                const quizs = p.quizs;
+            return [grade, userAnswers, quizs]
         })
-        .then(grade => {
+        .then(data => {
+            const grade = data[0];
+            const userAnswers =  data[1];
+            const quizs = data[2];
             let level = (((((speed - 150) * 100) / 350) + grade) / 2);
             if (level <= 60) {
                 level = 'مستوى ضعيف';
@@ -118,7 +124,9 @@ exports.calcTestResult = (req, res, next) => {
             res.render('main/read-test-result', {
                 grade: grade,
                 speed: speed,
-                level: level
+                level: level,
+                userAnswers: userAnswers,
+                quizs: quizs
             })
         })
         .catch(err => {
@@ -130,7 +138,7 @@ exports.getTestResult = (req, res, next) => {
 }
 // light speed
 exports.lightSpeed = (req, res, next) => {
-    Paragraph.find({}, 'title')
+    Paragraph.find({hide: false}, 'title').sort('so')
         .then(t => {
             Rule.findOne()
                 .then(r => {

@@ -1,122 +1,143 @@
 <%- include('../lay-outs/head') %>
-<%- include('../lay-outs/nav') %>
-<!-- quill css -->
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-<link rel="stylesheet" href="/css/admin/read-app.css">
-<div class="side-bar d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <svg class="bi me-2" width="40" height="32">
-            <use xlink:href="#bootstrap" /></svg>
-        <span class="fs-4">تطبيق القراءة السريعة و الفهم القرائي</span>
-    </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-            <a class="nav-link text-white" id="add">
-                <svg class="bi me-2" width="16" height="16">
-                    <use xlink:href="#home" /></svg>
-                اضف درس
+    <%- include('../lay-outs/nav') %>
+        <!-- quill css -->
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/admin/read-app.css">
+        <div class="side-bar d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap" />
+                </svg>
+                <span class="fs-4">تطبيق القراءة السريعة و الفهم القرائي</span>
             </a>
-        </li>
-        <li>
-            <a class="nav-link text-white" id="showL">
-                <svg class="bi me-2" width="16" height="16">
-                    <use xlink:href="#speedometer2" /></svg>
-                عرض الدروس
-            </a>
-        </li>
-        <!-- <li>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white" id="add">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#home" />
+                        </svg>
+                        اضف درس
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link text-white" id="showL">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#speedometer2" />
+                        </svg>
+                        عرض الدروس
+                    </a>
+                </li>
+                <!-- <li>
             <a href="/admin/read-app" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16">
                     <use xlink:href="#table" /></svg>
                 تطبيق القراءة السريعة و الفهم القرائي
             </a>
         </li> -->
-        <!-- <li>
+                <!-- <li>
             <a href="#" class="nav-link text-white">
                 <svg class="bi me-2" width="16" height="16">
                     <use xlink:href="#grid" /></svg>
                 تطبيق الومضة السريعة
             </a>
         </li> -->
-    </ul>
-</div>
-<div class="lessons" id="les" style="display: none;">
-    <ul class="list-group">
-        <% p.forEach( p =>{ %>
-        <li class="list-group-item"><%= p.title%> <a href="/admin/edit-prag/<%=p._id%>" type="button"
-                class="btn btn-dark">تعديل</a>
-            <form action="/admin/delete-prag/<%= p._id %>" method="post" id="removeForm"></form><button type="button"
-                class="btn btn-danger" id="removeBtn">حذف</button>
-        </li>
-        <%})%>
-    </ul>
-</div>
-<form class="myForm" id="myForm" action="/admin/add-paragraph" method="post">
-    <div class="container">
-        <h4>اضافة درس جديد</h4>
-        <div class="row">
-            <div class="mb-3 col-lg-6">
-                <label class="form-label" id="Lab">محتوى الدرس</label>
-                <input type="text" class="form-control" name="title" placeholder="عنوان الدرس" required>
-                <br>
-                <!-- Create the editor container -->
-                <div id="editor">
-                </div>
-                <input type="hidden" name="wordCount" id="wordCount">
-                <input type="hidden" name="content" id="content">
-                <input type="hidden" name="plaintext" id="plainText">
-            </div>
-            <div class="mb-3 col-lg-6 quizs" id="quizs">
-                <label class="form-label" id="Lab">اسئلة الدرس</label>
-                <div class="quiz">
-                    <input type="text" class="form-control" name="qu" placeholder="اكتب السؤال ؟" required>
-                    <input type="text" class="form-control" name="rA" placeholder="الاجابة الصحيحة" required>
-                    <input type="text" class="form-control" name="wAo" placeholder="الاجابة الخطاء" required>
-                    <input type="text" class="form-control" name="wAt" placeholder="الاجابة الخطاء" required>
-                </div>
-            </div>
-            <button type="button" id="addQuiz" class="btn btn-dark">اضف سؤال اخر</button>
+            </ul>
         </div>
-    </div>
-    <button type="button" id="subBtn" class="btn btn-dark">حفظ</button>
-</form>
-<form action="/admin/readRule" method="post" id='ruleForm'>
-    <div class="container">
-        <h1>اضافة تعليمات</h1>
-        <div class="row">
-            <div class="mb-3 col-lg-6" id="readRoot">
-                <h3>تطبيق القراءة السريعة والفهم القرائي</h3>
-                <% if(!r){ %>
-                <input type="text" class="form-control" name="readRule" placeholder="تعليمات">
-                <%}else{%>
-                <%r.read.forEach( r=>{ %>
-                <input type="text" class="form-control" name="readRule" value="<%=r%>">
-                <button type="button" class="btn btn-danger" onclick="this.previousElementSibling.remove(); this.remove()">-</button>
-                <%})%>
+        <div class="lessons" id="les" style="display: none;">
+            <ul class="list-group">
+                <button type="button" class="btn btn-dark" style="width: 200px; margin-bottom: 10px;" id="sortBtn"> حفظ الترتيب</button>
+                <%let i=0%>
+                    <% p.forEach( p=>{ %>
+                        <li class="list-group-item">
+                            <%= p.title%> <a href="/admin/edit-prag/<%=p._id%>" type="button"
+                                    class="btn btn-dark">تعديل</a>
+                                    <form action="/admin/hideL/<%=p._id%>" method="post" style="display: inline;">
+                                        <% if(p.hide){ %>
+                                            <button type="submit" class="btn btn-dark">اظهار</button>
+                                        <%}else{%>
+                                            <button type="submit" class="btn btn-dark">اخفاء</button>
+                                        <%}%>
+                                    </form>
+                                <form action="/admin/delete-prag/<%= p._id %>" method="post" id="removeForm" style="display: inline;"></form>
+                                <button type="button" class="btn btn-danger" id="removeBtn" style="display: inline;">حذف</button>
+                                <form action="/admin/sortP" method="post" id="sortForm<%=i%>"style="margin-top: 10px">
+                                    <input type="number" value="<%= p.so %>" class="form-control" style='width: 20%'
+                                        name="sortNum">
+                                    <input type="hidden" value="<%= p._id%>" name="pId">
+                                </form>
+                                <% i++%>
+                        </li>
+                        <%})%>
+            </ul>
+        </div>
+        <form class="myForm" id="myForm" action="/admin/add-paragraph" method="post">
+            <div class="container">
+                <h4>اضافة درس جديد</h4>
+                <div class="row">
+                    <div class="mb-3 col-lg-6">
+                        <label class="form-label" id="Lab">محتوى الدرس</label>
+                        <input type="text" class="form-control" name="title" placeholder="عنوان الدرس" required>
+                        <br>
+                        <!-- Create the editor container -->
+                        <div id="editor">
+                        </div>
+                        <input type="hidden" name="wordCount" id="wordCount">
+                        <input type="hidden" name="content" id="content">
+                        <input type="hidden" name="plaintext" id="plainText">
+                    </div>
+                    <div class="mb-3 col-lg-6 quizs" id="quizs">
+                        <label class="form-label" id="Lab">اسئلة الدرس</label>
+                        <div class="quiz">
+                            <input type="text" class="form-control" name="qu" placeholder="اكتب السؤال ؟" required>
+                            <input type="text" class="form-control" name="rA" placeholder="الاجابة الصحيحة" required>
+                            <input type="text" class="form-control" name="wAo" placeholder="الاجابة الخطاء" required>
+                            <input type="text" class="form-control" name="wAt" placeholder="الاجابة الخطاء" required>
+                        </div>
+                    </div>
+                    <button type="button" id="addQuiz" class="btn btn-dark">اضف سؤال اخر</button>
+                </div>
+            </div>
+            <button type="button" id="subBtn" class="btn btn-dark">حفظ</button>
+        </form>
+        <form action="/admin/readRule" method="post" id='ruleForm'>
+            <div class="container">
+                <h1>اضافة تعليمات</h1>
+                <div class="row">
+                    <div class="mb-3 col-lg-6" id="readRoot">
+                        <h3>تطبيق القراءة السريعة والفهم القرائي</h3>
+                        <% if(!r){ %>
+                            <input type="text" class="form-control" name="readRule" placeholder="تعليمات">
+                            <%}else{%>
+                                <%r.read.forEach( r=>{ %>
+                                    <input type="text" class="form-control" name="readRule" value="<%=r%>">
+                                    <button type="button" class="btn btn-danger"
+                                        onclick="this.previousElementSibling.remove(); this.remove()">-</button>
+                                    <%})%>
 
-                <%}%>
-            <button type="button" class="btn btn-dark" id='readRule'>+</button>
-          </div>
-          <div class="mb-3 col-lg-6" id="lightRoot">
-            <h3>تطبيق الومضة</h3>
-            <% if(!r){ %>
-                <input type="text" class="form-control" name="lightRule" placeholder="تعليمات">
-                <%}else{%>
-                <%r.light.forEach( r=>{ %>
-                <input type="text" class="form-control" name="lightRule" value="<%=r%>">
-                <button type="button" class="btn btn-danger" onclick="this.previousElementSibling.remove(); this.remove()">-</button>
-                <%})%>
-                <%}%>
+                                        <%}%>
+                                            <button type="button" class="btn btn-dark" id='readRule'>+</button>
+                    </div>
+                    <div class="mb-3 col-lg-6" id="lightRoot">
+                        <h3>تطبيق الومضة</h3>
+                        <% if(!r){ %>
+                            <input type="text" class="form-control" name="lightRule" placeholder="تعليمات">
+                            <%}else{%>
+                                <%r.light.forEach( r=>{ %>
+                                    <input type="text" class="form-control" name="lightRule" value="<%=r%>">
+                                    <button type="button" class="btn btn-danger"
+                                        onclick="this.previousElementSibling.remove(); this.remove()">-</button>
+                                    <%})%>
+                                        <%}%>
 
-            <button type="button" class="btn btn-dark" id='lightRule'>+</button>
-          </div>
-    </div>
-      <button type="submit" class="btn btn-dark">حفظ</button>
-    </div>
-</form>
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js"></script>
-<script src="/js/qull-config.js"></script>
-<script src="/js/admin-read-app.js"></script>
-<%- include('../lay-outs/footer') %>
+                                            <button type="button" class="btn btn-dark" id='lightRule'>+</button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-dark">حفظ</button>
+            </div>
+        </form>
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js"></script>
+        <script src="/js/qull-config.js"></script>
+        <script src="/js/admin-read-app.js"></script>
+        <%- include('../lay-outs/footer') %>
