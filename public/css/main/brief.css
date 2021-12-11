@@ -17,6 +17,9 @@ header h1{
     width: 224px;
     color: #fff;
 }
+.brief-con img{
+    max-width: 100%;
+}
 @media (max-width: 720px){
     header h1{
         right: 0;
