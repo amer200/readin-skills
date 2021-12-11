@@ -15,9 +15,10 @@ const User = require('./modells/user'); //tempr
 //     cookie: {maxAge: 3600 * 1000}
 // }));
 app.use(session({
-    secret: "secret",
-    // cookie: {expires: new Date(Date.now() + (30 * 86400 * 1000))}
-    cookie: {expires: new Date(Date.now() + (3600000))}
+    secret: 'asdkjasjckxncjzxnjcnjdscjds',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {_expires: Date.now() + (3600 * 1000) }
 
 }));
 app.use((req, res, next) => {
