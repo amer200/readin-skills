@@ -18,7 +18,9 @@ app.use(session({
     secret: 'asdkjasjckxncjzxnjcnjdscjds',
     resave: false,
     saveUninitialized: true,
-    cookie: {_expires: Date.now() + (3600 * 1000) }
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24
+    }
 
 }));
 app.use((req, res, next) => {
