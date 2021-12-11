@@ -8,14 +8,20 @@ const app = express();
 const port = process.env.PORT || 3000;
 const User = require('./modells/user'); //tempr
 //config session
+// app.use(session({
+//     secret: 'my secret',
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {maxAge: 3600 * 1000}
+// }));
 app.use(session({
-    secret: 'my secret',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {maxAge: 3600 * 1000}
+    secret: "secret",
+    // cookie: {expires: new Date(Date.now() + (30 * 86400 * 1000))}
+    cookie: {expires: new Date(Date.now() + (3600000))}
+
 }));
-app.use( (req, res, next)=>{
-    const user = req. session.user;
+app.use((req, res, next) => {
+    const user = req.session.user;
     res.locals = {
         user: user
     }
@@ -45,7 +51,7 @@ const authRoutes = require('./routes/auth');
 app.use(authRoutes);
 app.use('/admin', adminRoutes);
 app.use('/', mainRoutes);
-app.use('/test-result/619660c6443fe7b1076f6b94', (req, res, next)=>{
+app.use('/test-result/619660c6443fe7b1076f6b94', (req, res, next) => {
     res.render('main/read-test-result');
 })
 app.listen(port, () => {
@@ -53,16 +59,18 @@ app.listen(port, () => {
     mongoose.connect('mongodb+srv://admin:753698421@elearning.pwoet.mongodb.net/Elearning?retryWrites=true&w=majority')
         .then(result => {
             console.log('conectet to database');
-            User.findOne({name: 'hassan'})
-                .then( user => {
-                    if(!user){
+            User.findOne({
+                    name: 'hassan'
+                })
+                .then(user => {
+                    if (!user) {
                         const user = new User({
                             name: "hassan",
                             password: "2880319",
                             role: 'admin'
                         });
                         return user.save()
-                    }else{
+                    } else {
                         return user
                     }
                 })
