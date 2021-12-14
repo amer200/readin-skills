@@ -5,7 +5,7 @@ const path = require('path');
 const ejs = require('ejs');
 const session = require('express-session')
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 const User = require('./modells/user'); //tempr
 //config session
 // app.use(session({
@@ -17,11 +17,11 @@ const User = require('./modells/user'); //tempr
 app.use(session({
     secret: 'asdkjasjckxncjzxnjcnjdscjds',
     resave: false,
-    saveUninitialized: true,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24,
-        httpOnly: false
-    }
+    saveUninitialized: false,
+    // cookie: {
+    //     maxAge: 1000 * 60 * 60 * 24,
+    //     httpOnly: false
+    // }
 
 }));
 app.use((req, res, next) => {
